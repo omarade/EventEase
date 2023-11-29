@@ -6,6 +6,9 @@ on:
     - main 
     paths:
     - "AuthService/**"
+  
+  # Allows to run the workflow manually from actions tab
+  workflow_dispatch:
 
 jobs:
 
