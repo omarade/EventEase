@@ -34,3 +34,4 @@ jobs:
       run: |
         docker build -t ${{ secrets.DH_USERNAME }}/authservice:${{ github.sha }} -t ${{ secrets.DH_USERNAME }}/authservice:latest -f AuthService/Dockerfile ./AuthService
         docker push ${{ secrets.DH_USERNAME }}/authservice:${{ github.sha }}
+        docker push ${{ secrets.DH_USERNAME }}/authservice:latest
