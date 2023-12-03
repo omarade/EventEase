@@ -21,7 +21,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+//Roles
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
     {
         options.SignIn.RequireConfirmedAccount = false;
     })
