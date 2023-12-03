@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AuthService.Dtos
 {
-    public class UserRegisterReqDto
+    public class UserRegisterDto
     {
         [Required]
         public string Name { get; set; } = string.Empty;
@@ -12,5 +12,8 @@ namespace AuthService.Dtos
 
         [Required]
         public string Password { get; set; } = string.Empty;
+
+        [Required]
+        public string Role { get; set; }
     }
 }

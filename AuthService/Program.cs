@@ -4,7 +4,6 @@ using AuthService.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,12 +43,14 @@ builder.Services.AddAuthentication(options =>
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = true,
+            ValidateIssuer = false,
             ValidateAudience = false,
             RequireExpirationTime = false,
-            ValidateLifetime = false
+            ValidateLifetime = true
         };
     });
+
+builder.Services.AddAuthorization(); 
 
 var app = builder.Build();
 
