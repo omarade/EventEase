@@ -1,31 +1,37 @@
 using System.Text;
-using AuthService.Configurations;
-using AuthService.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using UserService.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
-
-builder.Services.AddDbContext<ApiDbContext>(options => 
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+//Configur Databases
+if(builder.Environment.IsProduction()){
+    Console.WriteLine("----> Using SqlServer Db");
+    // builder.Services.AddDbContext<AppDbContext>(opt => 
+    //     opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn"))
+    // );  
+}
+else 
+{
+    Console.WriteLine("----> Using InMem Db");
+    builder.Services.AddDbContext<AppDbContext>(opt => 
+        opt.UseInMemoryDatabase("InMem")
+    );
+}
 
 // Add services to the container.
+builder.Services.AddScoped<IClientRepo, ClientRepo>();
+builder.Services.AddScoped<IVenueRepo, VenueRepo>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-//Roles
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
-    {
-        options.SignIn.RequireConfirmedAccount = false;
-    })
-    .AddEntityFrameworkStores<ApiDbContext>();
 
 //Confifure JWT
 builder.Services.AddAuthentication(options => 
@@ -61,9 +67,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+PrepDb.PrepPopulation(app, app.Environment.IsProduction());
+
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

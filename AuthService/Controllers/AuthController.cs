@@ -1,12 +1,9 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AuthService.Configurations;
 using AuthService.Dtos;
+using AuthService.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AuthService.Controllers
 {
@@ -16,31 +13,40 @@ namespace AuthService.Controllers
     {
         private readonly ILogger<AuthController> _logger;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtConfig _jwtConfig;
+        
 
-        public AuthController(ILogger<AuthController> logger, UserManager<IdentityUser> userManager, IOptionsMonitor<JwtConfig> _optionsMonitor)
+        public AuthController(ILogger<AuthController> logger, 
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager, 
+            IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             _logger = logger;
             _userManager = userManager;
-            _jwtConfig = _optionsMonitor.CurrentValue;
+            _jwtConfig = optionsMonitor.CurrentValue;
+            _roleManager = roleManager;
         }
 
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login([FromBody] UserLoginReqDto loginReqDto)
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             if(ModelState.IsValid){
-                var existingUser = await _userManager.FindByEmailAsync(loginReqDto.Email);
+                var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
-                if(existingUser == null){
+                if(user == null){
                     return BadRequest("Invalid authentication");
                 }
 
-                var isPasswordValid = await _userManager.CheckPasswordAsync(existingUser, loginReqDto.Password);
+                var isPasswordValid = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
                 if(isPasswordValid)
                 {
-                    var token = GenerateJwtToken(existingUser);
+                    var userClaims = await _userManager.GetClaimsAsync(user);
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    
+                    var token = await JWTHelper.GenerateJwtToken(user, _jwtConfig, userClaims, userRoles);
 
                     return Ok(new UserLoginResDto() 
                     {
@@ -57,12 +63,12 @@ namespace AuthService.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register([FromBody] UserRegisterReqDto registerReqDto)
+        public async Task<IActionResult> Register([FromBody] UserRegisterDto registerDto)
         {
             if(ModelState.IsValid)
             {
                 //check if email exists in db
-                var emailExists = await _userManager.FindByEmailAsync(registerReqDto.Email);
+                var emailExists = await _userManager.FindByEmailAsync(registerDto.Email);
 
                 if(emailExists != null)
                 {
@@ -71,17 +77,36 @@ namespace AuthService.Controllers
 
                 var user = new IdentityUser()
                 {
-                    Email = registerReqDto.Email,
-                    UserName = "test"
+                    Email = registerDto.Email,
+                    UserName = registerDto.Email
 
                 };
 
-                var isCreated = await _userManager.CreateAsync(user, registerReqDto.Password);
+                var isCreated = await _userManager.CreateAsync(user, registerDto.Password);
 
                 if(isCreated.Succeeded)
                 {
+                    //Check if role exists
+                    var roleExists = await _roleManager.RoleExistsAsync(registerDto.Role);
+                    if (!roleExists)
+                    {
+                        _logger.LogInformation($"Role type '{registerDto.Role}' does not exist");
+                        return BadRequest($"Role type '{registerDto.Role}' does not exist");
+                    }
+
+                    //Assign role to user
+                    var result = await _userManager.AddToRoleAsync(user, registerDto.Role);
+
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation($"New role has been assigned successfully to user with email: '{user.Email}'");
+                    }
+
                     //Generate token
-                    var token = GenerateJwtToken(user);
+                    var userClaims = await _userManager.GetClaimsAsync(user);
+                    var userRoles = await _userManager.GetRolesAsync(user);
+
+                    var token = await JWTHelper.GenerateJwtToken(user, _jwtConfig, userClaims, userRoles);
                     return Ok(new UserRegisterResDto()
                     {
                         Result = true,
@@ -95,30 +120,6 @@ namespace AuthService.Controllers
             return BadRequest("Invalid request payload");
         }
 
-        private string GenerateJwtToken(IdentityUser user)
-        {
-            var jwtTokenHandler = new JwtSecurityTokenHandler();
-
-            var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
-
-            var tokenDescriptor = new SecurityTokenDescriptor()
-            {
-                Subject = new ClaimsIdentity(new [] 
-                {
-                    new Claim("Id", user.Id),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                }),
-                Expires = DateTime.UtcNow.AddHours(4),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
-                    SecurityAlgorithms.HmacSha512)
-
-            };
-
-            var token = jwtTokenHandler.CreateToken(tokenDescriptor);
-            var jwtToken = jwtTokenHandler.WriteToken(token);
-            return jwtToken;
-        }
+        
     }
 }
