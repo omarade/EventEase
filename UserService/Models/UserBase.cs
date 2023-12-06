@@ -9,6 +9,9 @@ namespace UserService.Models
         public int Id { get; set; }
 
         [Required]
+        public string? ExternalId { get; set; }
+
+        [Required]
         public string? Name { get; set; }
 
         [Required]

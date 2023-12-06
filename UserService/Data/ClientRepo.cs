@@ -30,11 +30,25 @@ namespace UserService.Data
         {
             return _context.Clients.FirstOrDefault(c => c.Id == id);
         }
+        
+        public Client GetClientByEmail(string email)
+        {
+            return _context.Clients.FirstOrDefault(c => c.Email == email);
+        }
 
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
         }
 
+        public void UpdateClient(Client client)
+        {
+            _context.Clients.Update(client);       
+        }
+
+        public void DeleteClient(Client client)
+        {
+            _context.Clients.Remove(client);
+        }
     }
 }

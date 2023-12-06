@@ -20,6 +20,7 @@ namespace UserService.Data
             _context.Venues.Add(venue);
         }
 
+
         public IEnumerable<Venue> GetAllVenues()
         {
             return _context.Venues.ToList();
@@ -35,5 +36,14 @@ namespace UserService.Data
             return (_context.SaveChanges() >= 0);
         }
 
+        public void UpdateVenue(Venue venue)
+        {
+            _context.Venues.Update(venue);
+        }
+
+        public void DeleteVenue(Venue venue)
+        {
+            _context.Venues.Remove(venue);
+        }
     }
 }

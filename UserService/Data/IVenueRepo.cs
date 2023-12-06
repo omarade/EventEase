@@ -12,5 +12,9 @@ namespace UserService.Data
 
         void CreateVenue(Venue venue);
 
+        void UpdateVenue(Venue venue);
+
+        void DeleteVenue(Venue venue);
+
     }
 }
