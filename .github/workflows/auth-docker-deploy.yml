@@ -1,4 +1,4 @@
-name: AuthService Docker Build & Push
+name: AuthService Docker Deploy
 
 on:
   push:
