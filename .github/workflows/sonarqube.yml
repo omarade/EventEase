@@ -1,25 +1,27 @@
-name: Build
+name: SonarQube
+
 on:
   push:
     branches:
-      - main # the name of your main branch
+      - main
 
 jobs:
   build:
     name: Build
     runs-on: windows-latest
+    permissions: read-all
     steps:
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.17
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
       - name: Cache SonarQube packages
         uses: actions/cache@v1
         with:
-          path: ~\sonar\cache
+          path: ~\.sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache SonarQube scanner
@@ -36,10 +38,9 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Build and analyze
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        shell: powershell
+        env:
+          shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"example" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EventEase" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet build
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
