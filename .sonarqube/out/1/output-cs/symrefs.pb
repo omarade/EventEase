@@ -1,0 +1,12 @@
+|
+>E:\Work\Repos\EventEase\MessageBusEvents\Models\UserCreated.cs
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
