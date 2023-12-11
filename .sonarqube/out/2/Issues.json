@@ -529,27 +529,6 @@
           }
         },
         {
-          "ruleId": "S2094",
-          "level": "warning",
-          "message": "Remove this empty class, write its code or make it an \"interface\".",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/UserService/Models/Client.cs",
-                "region": {
-                  "startLine": 3,
-                  "startColumn": 18,
-                  "endLine": 3,
-                  "endColumn": 24
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "S125",
           "level": "warning",
           "message": "Remove this commented out code.",
@@ -583,6 +562,27 @@
                   "startColumn": 13,
                   "endLine": 140,
                   "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2094",
+          "level": "warning",
+          "message": "Remove this empty class, write its code or make it an \"interface\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/UserService/Models/Client.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 24
                 }
               }
             }
@@ -655,30 +655,6 @@
           }
         },
         {
-          "ruleId": "S1172",
-          "level": "warning",
-          "message": "Remove this unused method parameter 'isProd'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/UserService/Data/PrepDb.cs",
-                "region": {
-                  "startLine": 15,
-                  "startColumn": 60,
-                  "endLine": 15,
-                  "endColumn": 71
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1,
-            "customProperties": {
-              "IsRemovable": "True"
-            }
-          }
-        },
-        {
           "ruleId": "S2583",
           "level": "warning",
           "message": "Change this condition so that it does not always evaluate to 'True'. Some code paths are unreachable.",
@@ -744,6 +720,30 @@
           ],
           "properties": {
             "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1172",
+          "level": "warning",
+          "message": "Remove this unused method parameter 'isProd'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/UserService/Data/PrepDb.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 60,
+                  "endLine": 15,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "IsRemovable": "True"
+            }
           }
         },
         {

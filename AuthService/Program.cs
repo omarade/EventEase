@@ -1,6 +1,8 @@
 using System.Text;
 using AuthService.Configurations;
+using AuthService.Consumers;
 using AuthService.Data;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,12 +10,35 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{builder.Configuration["RabbitMQPort"]}";
+
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
 builder.Services.AddDbContext<ApiDbContext>(options => 
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//builder.Services.AddMass;
+builder.Services.AddMassTransit(config => {
+    Console.WriteLine(rabbitMQ);
+
+    // register consumer
+    config.AddConsumer<UserDeletedConsumer>();
+
+    config.SetKebabCaseEndpointNameFormatter();
+
+    config.UsingRabbitMq((ctx, cfg) => {
+        cfg.Host(rabbitMQ);
+        //cfg.ConfigureEndpoints(ctx);
+        cfg.ReceiveEndpoint("user-deleted-endpoint", c => {
+            // define the consumer class
+            c.ConfigureConsumer<UserDeletedConsumer>(ctx);
+        });
+    });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

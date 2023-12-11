@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService", "AuthService\AuthService.csproj", "{D3D67510-6989-4364-A779-A7169BF14BEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{2C88125A-D5A7-49C6-A3CE-23F81CB02ABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBusEvents", "MessageBusEvents\MessageBusEvents.csproj", "{C9E565B6-90A0-4581-8687-5A4E47EEDEE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{D3D67510-6989-4364-A779-A7169BF14BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3D67510-6989-4364-A779-A7169BF14BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3D67510-6989-4364-A779-A7169BF14BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C88125A-D5A7-49C6-A3CE-23F81CB02ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C88125A-D5A7-49C6-A3CE-23F81CB02ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C88125A-D5A7-49C6-A3CE-23F81CB02ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C88125A-D5A7-49C6-A3CE-23F81CB02ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E565B6-90A0-4581-8687-5A4E47EEDEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E565B6-90A0-4581-8687-5A4E47EEDEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E565B6-90A0-4581-8687-5A4E47EEDEE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E565B6-90A0-4581-8687-5A4E47EEDEE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

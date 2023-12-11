@@ -1,11 +1,16 @@
 using System.Text;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using UserService.Consumers;
 using UserService.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+// vars
+string rabbitMQ = "";
 
 //Configur Databases
 if(builder.Environment.IsProduction()){
@@ -16,17 +21,39 @@ if(builder.Environment.IsProduction()){
 }
 else 
 {
+    rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{builder.Configuration["RabbitMQPort"]}";
+
     Console.WriteLine("----> Using InMem Db");
     builder.Services.AddDbContext<AppDbContext>(opt => 
         opt.UseInMemoryDatabase("InMem")
     );
 }
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//Configur MassTrasit RMQ
+builder.Services.AddMassTransit(config => {
+    // register consumer
+    config.AddConsumer<UserCreatedConsumer>();
+
+    config.SetKebabCaseEndpointNameFormatter();
+
+    config.UsingRabbitMq((ctx, cfg) => {
+		Console.WriteLine(rabbitMQ);
+        cfg.Host(rabbitMQ);
+
+        //cfg.ConfigureEndpoints(context);
+        cfg.ReceiveEndpoint("user-created-endpoint", c => {
+            // define the consumer class
+            c.ConfigureConsumer<UserCreatedConsumer>(ctx);
+        });
+    });
+});
+
 // Add services to the container.
 builder.Services.AddScoped<IClientRepo, ClientRepo>();
 builder.Services.AddScoped<IVenueRepo, VenueRepo>();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

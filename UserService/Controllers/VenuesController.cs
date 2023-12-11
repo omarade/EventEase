@@ -1,4 +1,6 @@
 using AutoMapper;
+using MassTransit;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +16,13 @@ namespace UserService.Controllers
     {
         private readonly IVenueRepo _venueRepo;
         private readonly IMapper _mapper;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public VenuesController(IVenueRepo venueRepo, IMapper mapper)
+        public VenuesController(IVenueRepo venueRepo, IMapper mapper, IPublishEndpoint publishEndpoint)
         {
             _venueRepo = venueRepo;
             _mapper = mapper;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
@@ -94,8 +98,13 @@ namespace UserService.Controllers
                 return Unauthorized();
             }
 
+            var userDeleted = _mapper.Map<UserDeleted>(venue);
+
             _venueRepo.DeleteVenue(venue);
             _venueRepo.SaveChanges();
+
+            //Publish UserDeleted Event
+            _publishEndpoint.Publish<UserDeleted>(userDeleted);
             
             return Ok();
         }

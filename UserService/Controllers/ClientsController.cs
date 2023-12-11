@@ -1,4 +1,6 @@
 using AutoMapper;
+using MassTransit;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,17 +14,17 @@ namespace UserService.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
-    {
-        
+    {       
         private readonly IClientRepo _clientRepo;
+        private readonly IMapper _mapper;      
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        
-        private readonly IMapper _mapper;
-
-        public ClientsController(IClientRepo clientRepo, IMapper mapper)
+        public ClientsController(IClientRepo clientRepo, IMapper mapper,
+            IPublishEndpoint publishEndpoint)
         {
             _clientRepo = clientRepo;
             _mapper = mapper;
+            _publishEndpoint = publishEndpoint;
         }
 
 
@@ -135,8 +137,16 @@ namespace UserService.Controllers
                 return Unauthorized();
             }
 
+            // var userDeleted = new UserDeleted() {
+            //     Id = id
+            // };
+            var userDeleted = _mapper.Map<UserDeleted>(client);
+
             _clientRepo.DeleteClient(client);
             _clientRepo.SaveChanges();
+
+            //Publish UserDeleted Event
+            _publishEndpoint.Publish<UserDeleted>(userDeleted);
             
             return Ok();
        }

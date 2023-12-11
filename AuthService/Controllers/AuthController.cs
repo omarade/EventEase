@@ -1,6 +1,9 @@
 using AuthService.Configurations;
 using AuthService.Dtos;
 using AuthService.Helpers;
+using AutoMapper;
+using MassTransit;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -14,18 +17,23 @@ namespace AuthService.Controllers
         private readonly ILogger<AuthController> _logger;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMapper _mapper;
         private readonly JwtConfig _jwtConfig;
-        
+        private readonly IPublishEndpoint _publishEndpoint;
 
         public AuthController(ILogger<AuthController> logger, 
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager, 
-            IOptionsMonitor<JwtConfig> optionsMonitor)
+            IOptionsMonitor<JwtConfig> optionsMonitor,
+            IMapper mapper,
+            IPublishEndpoint publishEndpoint)
         {
             _logger = logger;
             _userManager = userManager;
             _jwtConfig = optionsMonitor.CurrentValue;
             _roleManager = roleManager;
+            _mapper = mapper;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpPost]
@@ -79,7 +87,6 @@ namespace AuthService.Controllers
                 {
                     Email = registerDto.Email,
                     UserName = registerDto.Email
-
                 };
 
                 var isCreated = await _userManager.CreateAsync(user, registerDto.Password);
@@ -101,6 +108,17 @@ namespace AuthService.Controllers
                     {
                         _logger.LogInformation($"New role has been assigned successfully to user with email: '{user.Email}'");
                     }
+
+                    //Publish UserCreated event
+                    //var userCreated = _mapper.Map<UserCreated>(user);
+                    var userCreated = new UserCreated() {
+                        Id = user.Id,
+                        Name = registerDto.Name,
+                        Email = user.Email,
+                        Role = registerDto.Role
+                    };
+                    Console.WriteLine($"----> Writing message to RabbitMQ {userCreated.Id}");
+                    await _publishEndpoint.Publish<UserCreated>(userCreated);
 
                     //Generate token
                     var userClaims = await _userManager.GetClaimsAsync(user);

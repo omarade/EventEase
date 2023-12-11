@@ -488,3 +488,7 @@ $RECYCLE.BIN/
 
 # db file
 app.db
+
+# Private files
+cheatsheet.txt
+resources.txt
