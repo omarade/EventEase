@@ -50,7 +50,7 @@ jobs:
       - name: Pull changes again (to make sure local changes are up-to-date)
         run: |
           echo ${{ github.sha }}
-          git pull origin master
+          git pull origin main
 
       - name: GitHub Push
         # You may pin to the exact commit or the version.
