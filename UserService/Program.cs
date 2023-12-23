@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // vars
 string rabbitMQ = "";
 
-//Configur Databases
+//Configure Databases
 if(builder.Environment.IsProduction()){
     Console.WriteLine("----> Using SqlServer Db");
     // builder.Services.AddDbContext<AppDbContext>(opt => 
@@ -31,10 +31,11 @@ else
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//Configur MassTrasit RMQ
+//Configure MassTransit RMQ
 builder.Services.AddMassTransit(config => {
     // register consumer
-    config.AddConsumer<UserCreatedConsumer>();
+    config.AddConsumer<ClientCreatedConsumer>();
+    config.AddConsumer<VenueCreatedConsumer>();
 
     config.SetKebabCaseEndpointNameFormatter();
 
@@ -42,10 +43,14 @@ builder.Services.AddMassTransit(config => {
 		Console.WriteLine(rabbitMQ);
         cfg.Host(rabbitMQ);
 
-        //cfg.ConfigureEndpoints(context);
-        cfg.ReceiveEndpoint("user-created-endpoint", c => {
+        cfg.ReceiveEndpoint("client-created-endpoint", c => {
             // define the consumer class
-            c.ConfigureConsumer<UserCreatedConsumer>(ctx);
+            c.ConfigureConsumer<ClientCreatedConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("venue-created-endpoint", c => {
+            // define the consumer class
+            c.ConfigureConsumer<VenueCreatedConsumer>(ctx);
         });
     });
 });
@@ -60,7 +65,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Confifure JWT
+//Configure JWT
 builder.Services.AddAuthentication(options => 
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
