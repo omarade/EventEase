@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
+    <PackageId>EventEase.$(AssemblyName)</PackageId>
+    <Authors>EventEase</Authors>
+    <Description>Message bus events for EventEase system</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>
