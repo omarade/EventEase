@@ -4,7 +4,7 @@ on: push
 
 env:
   PROJECT_PATH: MessageBusEvents/MessageBusEvents.csproj
-  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\MessageBusEvents\output
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
 
 jobs:
