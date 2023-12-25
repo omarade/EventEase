@@ -43,12 +43,12 @@ builder.Services.AddMassTransit(config => {
 		Console.WriteLine(rabbitMQ);
         cfg.Host(rabbitMQ);
 
-        cfg.ReceiveEndpoint("client-created-endpoint", c => {
+        cfg.ReceiveEndpoint("UserService_client-created-endpoint", c => {
             // define the consumer class
             c.ConfigureConsumer<ClientCreatedConsumer>(ctx);
         });
 
-        cfg.ReceiveEndpoint("venue-created-endpoint", c => {
+        cfg.ReceiveEndpoint("UserService_venue-created-endpoint", c => {
             // define the consumer class
             c.ConfigureConsumer<VenueCreatedConsumer>(ctx);
         });

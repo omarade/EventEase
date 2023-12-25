@@ -115,6 +115,7 @@ namespace UserService.Controllers
             _clientRepo.UpdateClient(client);
             if(_clientRepo.SaveChanges())
             {
+                Console.WriteLine("----> Sending message ClientUpdated");
                 var clientUpdated = _mapper.Map<ClientUpdated>(client);
 
                 _publishEndpoint.Publish<ClientUpdated>(clientUpdated);

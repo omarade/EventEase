@@ -75,6 +75,7 @@ namespace UserService.Controllers
             _venueRepo.UpdateVenue(venue);
             if (_venueRepo.SaveChanges())
             {
+                Console.WriteLine("----> Sending message VenueUpdated");
                 var venueUpdated = _mapper.Map<VenueUpdated>(venue);
 
                 _publishEndpoint.Publish<VenueUpdated>(venueUpdated);

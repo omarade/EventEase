@@ -13,7 +13,7 @@ namespace UserService.Profiles
             CreateMap<Client, ClientReadDto>();
             CreateMap<Venue, VenueReadDto>();
 
-            // Event models
+            // Messagebus Event models
             CreateMap<VenueCreated, Venue>()
                 .ForMember(dest => dest.ExternalId, opt =>
                     opt.MapFrom(src => src.Id)

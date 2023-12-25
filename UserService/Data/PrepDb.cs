@@ -30,29 +30,25 @@ namespace UserService.Data
           
             if(!context.Clients.Any() || !context.Venues.Any())
             {
+                // Add client
                 if(!context.Clients.Any())
                 {
                     Console.WriteLine("---> Seeding Clients data...");
 
                     context.Clients.AddRange(
-                        new Client() {ExternalId="e0de8c02-79fd-48d0-8e99-fe3304b4995b", Name="Logan Tate", Email="logantate@live.com"},
-                        new Client() {ExternalId="test", Name="Alice Johnson", Email="alice.johnson@example.com"},
-                        new Client() {ExternalId="test1", Name="Bob Smith", Email="bob.smith@example.com"},
-                        new Client() {ExternalId="test2", Name="Emily Davis", Email="emily.davis@example.com"}
+                        new Client() {ExternalId="e0de8c02-79fd-48d0-8e99-fe3304b4995c", Name="Logan Tate", Email="client@gmail.com"}
                     );
                 }
 
+                // Add venue
                 if(!context.Venues.Any())
                 {
                     Console.WriteLine("---> Seeding Venues data...");
 
                     context.Venues.AddRange(
-                    //     new Venue() {Name="Gala Gardens", Email="events@galagardens.com", PhoneNumber= "+1 (555) 123-4567", Address="Blossom Lane 123", City="Cityville"},
-                        new Venue() {ExternalId="91ae0b89-5f2e-46e7-87d5-d984e2abd588", Name="Sapphire Sky Hall", Email="info@sapphireskyhall.com", PhoneNumber= "+1 (555) 123-4523", Address="Crystal Avenue 456", City="Townsville"}
-                    //     new Venue() {Name="Harborview Pavilion", Email="events@harborviewpavilion.com", PhoneNumber= "+1 (555) 456-7890", Address="Oceanfront Drive 101", City="Port City"}
+                        new Venue() {ExternalId="e0de8c02-79fd-48d0-8e99-fe3304b4995a", Name="Sapphire Sky Hall", Email="venue@gmail.com", PhoneNumber= "+1 (555) 123-4523", Address="Crystal Avenue 456", City="Townsville"}
                     );
-                }
-                
+                }                
 
                 context.SaveChanges();
             }
