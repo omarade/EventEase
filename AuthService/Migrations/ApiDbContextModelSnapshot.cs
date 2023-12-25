@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AuthService.Migrations
 {
-    [DbContext(typeof(ApiDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class ApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

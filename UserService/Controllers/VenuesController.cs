@@ -71,11 +71,16 @@ namespace UserService.Controllers
             venue.PhoneNumber = venueUpdateDto.PhoneNumber;
             venue.Address = venueUpdateDto.Address;
             venue.City = venueUpdateDto.City;
-
-            
+           
             _venueRepo.UpdateVenue(venue);
-            _venueRepo.SaveChanges();
-            
+            if (_venueRepo.SaveChanges())
+            {
+                Console.WriteLine("----> Sending message VenueUpdated");
+                var venueUpdated = _mapper.Map<VenueUpdated>(venue);
+
+                _publishEndpoint.Publish<VenueUpdated>(venueUpdated);
+            }
+
             return NoContent();
         }
 
@@ -98,13 +103,13 @@ namespace UserService.Controllers
                 return Unauthorized();
             }
 
-            var userDeleted = _mapper.Map<UserDeleted>(venue);
+            var userDeleted = _mapper.Map<VenueDeleted>(venue);
 
             _venueRepo.DeleteVenue(venue);
             _venueRepo.SaveChanges();
 
             //Publish UserDeleted Event
-            _publishEndpoint.Publish<UserDeleted>(userDeleted);
+            _publishEndpoint.Publish<VenueDeleted>(userDeleted);
             
             return Ok();
         }

@@ -13,8 +13,8 @@ namespace UserService.Profiles
             CreateMap<Client, ClientReadDto>();
             CreateMap<Venue, VenueReadDto>();
 
-            // Event models
-            CreateMap<UserCreated, Venue>()
+            // Messagebus Event models
+            CreateMap<VenueCreated, Venue>()
                 .ForMember(dest => dest.ExternalId, opt =>
                     opt.MapFrom(src => src.Id)
                 )
@@ -22,7 +22,7 @@ namespace UserService.Profiles
                     opt => opt.Ignore()
                 );
                                 
-            CreateMap<UserCreated, Client>()                
+            CreateMap<ClientCreated, Client>()                
                 .ForMember(dest => dest.ExternalId, opt =>
                     opt.MapFrom(src => src.Id)
                 )
@@ -30,12 +30,22 @@ namespace UserService.Profiles
                     opt => opt.Ignore()
                 );
 
-            CreateMap<Venue, UserDeleted>()
+            CreateMap<Venue, VenueDeleted>()
                 .ForMember(dest => dest.Id, opt =>
                     opt.MapFrom(src => src.ExternalId)
                 );
 
-            CreateMap<Client, UserDeleted>()
+            CreateMap<Client, ClientDeleted>()
+                .ForMember(dest => dest.Id, opt =>
+                    opt.MapFrom(src => src.ExternalId)
+                );
+
+            CreateMap<Venue, VenueUpdated>()
+                .ForMember(dest => dest.Id, opt =>
+                    opt.MapFrom(src => src.ExternalId)
+                );
+
+            CreateMap<Client, ClientUpdated>()
                 .ForMember(dest => dest.Id, opt =>
                     opt.MapFrom(src => src.ExternalId)
                 );

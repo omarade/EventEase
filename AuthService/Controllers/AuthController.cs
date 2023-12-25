@@ -109,16 +109,30 @@ namespace AuthService.Controllers
                         _logger.LogInformation($"New role has been assigned successfully to user with email: '{user.Email}'");
                     }
 
-                    //Publish UserCreated event
+                    //Publish ClientCreated event
                     //var userCreated = _mapper.Map<UserCreated>(user);
-                    var userCreated = new UserCreated() {
-                        Id = user.Id,
-                        Name = registerDto.Name,
-                        Email = user.Email,
-                        Role = registerDto.Role
-                    };
-                    Console.WriteLine($"----> Writing message to RabbitMQ {userCreated.Id}");
-                    await _publishEndpoint.Publish<UserCreated>(userCreated);
+                    if(registerDto.Role == "Client")
+                    {
+                        var clientCreated = new ClientCreated()
+                        {
+                            Id = user.Id,
+                            Name = registerDto.Name,
+                            Email = user.Email,
+                        };
+                        Console.WriteLine($"----> Writing message to RabbitMQ {clientCreated.Id}");
+                        await _publishEndpoint.Publish<ClientCreated>(clientCreated);
+                    }
+                    else if(registerDto.Role == "Venue")
+                    {
+                        var venueCreated = new VenueCreated()
+                        {
+                            Id = user.Id,
+                            Name = registerDto.Name,
+                            Email = user.Email,
+                        };
+                        Console.WriteLine($"----> Writing message to RabbitMQ {venueCreated.Id}");
+                        await _publishEndpoint.Publish<VenueCreated>(venueCreated);
+                    }
 
                     //Generate token
                     var userClaims = await _userManager.GetClaimsAsync(user);

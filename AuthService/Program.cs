@@ -14,8 +14,22 @@ var rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{bui
 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
-builder.Services.AddDbContext<ApiDbContext>(options => 
+//Configure Databases
+if (builder.Environment.IsProduction())
+{
+    Console.WriteLine("----> Using SqlServer Db");
+    builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+}
+else
+{
+    rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{builder.Configuration["RabbitMQPort"]}";
+
+    Console.WriteLine("----> Using InMem Db");
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+        opt.UseInMemoryDatabase("InMem")
+    );
+}
 
 // Add services to the container.
 
@@ -26,16 +40,22 @@ builder.Services.AddMassTransit(config => {
     Console.WriteLine(rabbitMQ);
 
     // register consumer
-    config.AddConsumer<UserDeletedConsumer>();
+    config.AddConsumer<ClientDeletedConsumer>();
+    config.AddConsumer<VenueDeletedConsumer>();
 
     config.SetKebabCaseEndpointNameFormatter();
 
     config.UsingRabbitMq((ctx, cfg) => {
         cfg.Host(rabbitMQ);
-        //cfg.ConfigureEndpoints(ctx);
-        cfg.ReceiveEndpoint("user-deleted-endpoint", c => {
+
+        cfg.ReceiveEndpoint("AuthService_client-deleted-endpoint", c => {
             // define the consumer class
-            c.ConfigureConsumer<UserDeletedConsumer>(ctx);
+            c.ConfigureConsumer<ClientDeletedConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("AuthService_venue-deleted-endpoint", c => {
+            // define the consumer class
+            c.ConfigureConsumer<VenueDeletedConsumer>(ctx);
         });
     });
 });
@@ -50,9 +70,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
     })
-    .AddEntityFrameworkStores<ApiDbContext>();
+    .AddEntityFrameworkStores<AppDbContext>();
 
-//Confifure JWT
+//Configure JWT
 builder.Services.AddAuthentication(options => 
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -85,6 +105,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+PrepData.PrepPopulation(app, app.Environment.IsProduction());
 
 app.UseHttpsRedirection();
 

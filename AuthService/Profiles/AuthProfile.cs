@@ -9,8 +9,7 @@ namespace AuthService.Profiles
         public AuthProfile()
         {
             // Source -> Target
-            CreateMap<IdentityUser, UserCreated>();
-            CreateMap<UserDeleted, IdentityUser>();
+            CreateMap<IdentityUser, ClientCreated>();
         }
     }
 }

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuthService.Data
 {
-    public class ApiDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext
     {
-        public ApiDbContext(DbContextOptions<ApiDbContext> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
             

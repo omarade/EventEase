@@ -113,8 +113,14 @@ namespace UserService.Controllers
             client.Name = clientUpdateDto.Name;
             
             _clientRepo.UpdateClient(client);
-            _clientRepo.SaveChanges();
-            
+            if(_clientRepo.SaveChanges())
+            {
+                Console.WriteLine("----> Sending message ClientUpdated");
+                var clientUpdated = _mapper.Map<ClientUpdated>(client);
+
+                _publishEndpoint.Publish<ClientUpdated>(clientUpdated);
+            }
+
             return NoContent();
        }
 
@@ -137,16 +143,14 @@ namespace UserService.Controllers
                 return Unauthorized();
             }
 
-            // var userDeleted = new UserDeleted() {
-            //     Id = id
-            // };
-            var userDeleted = _mapper.Map<UserDeleted>(client);
+            var clientDeleted = _mapper.Map<ClientDeleted>(client);
 
             _clientRepo.DeleteClient(client);
-            _clientRepo.SaveChanges();
-
-            //Publish UserDeleted Event
-            _publishEndpoint.Publish<UserDeleted>(userDeleted);
+            if(_clientRepo.SaveChanges())
+            {
+                //Publish clientDeleted Event
+                _publishEndpoint.Publish<ClientDeleted>(clientDeleted);
+            }
             
             return Ok();
        }

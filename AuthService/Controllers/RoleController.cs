@@ -11,12 +11,12 @@ namespace AuthService.Controllers
     [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
-        private readonly ApiDbContext _apiDbContext;
+        private readonly AppDbContext _apiDbContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<RoleController> _logger;
 
-        public RoleController(ApiDbContext apiDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<RoleController> logger)
+        public RoleController(AppDbContext apiDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<RoleController> logger)
         {
             _apiDbContext = apiDbContext;
             _userManager = userManager;

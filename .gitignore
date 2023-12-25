@@ -488,6 +488,8 @@ $RECYCLE.BIN/
 
 # db file
 app.db
+app.db-shm
+app.db-wal
 
 # Private files
 cheatsheet.txt

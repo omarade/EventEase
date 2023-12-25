@@ -18,7 +18,7 @@ namespace UserService.Data
                 throw new ArgumentNullException(nameof(client));
             }
 
-            _context.Clients.Add(client);
+            _context.Clients.AddAsync(client);
         }
 
         public IEnumerable<Client> GetAllClients()

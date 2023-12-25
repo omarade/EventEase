@@ -1,6 +1,6 @@
 namespace MessageBusEvents.Models
 {
-    public class UserDeleted
+    public class VenueDeleted
     {
         public string Id { get; set; }
     }
