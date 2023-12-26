@@ -1,7 +1,7 @@
 using AutoMapper;
 using EventService.Models;
 using EventService.Models.Dtos;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 
 namespace EventService.Profiles
 {

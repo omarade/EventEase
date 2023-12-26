@@ -1,5 +1,5 @@
 using MassTransit;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 using Microsoft.AspNetCore.Identity;
 
 

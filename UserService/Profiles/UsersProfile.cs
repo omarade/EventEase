@@ -1,5 +1,5 @@
 using AutoMapper;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 using UserService.Models;
 using UserService.Models.Dtos;
 

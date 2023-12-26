@@ -2,7 +2,7 @@ using AutoMapper;
 using EventService.Data;
 using EventService.Models;
 using MassTransit;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 
 namespace EventService.Consumers
 {

@@ -1,6 +1,6 @@
 using AutoMapper;
 using MassTransit;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 using UserService.Data;
 using UserService.Models;
 

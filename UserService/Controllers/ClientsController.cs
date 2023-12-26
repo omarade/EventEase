@@ -1,6 +1,6 @@
 using AutoMapper;
 using MassTransit;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

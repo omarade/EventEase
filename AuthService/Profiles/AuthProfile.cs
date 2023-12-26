@@ -1,5 +1,5 @@
 using AutoMapper;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 using Microsoft.AspNetCore.Identity;
 
 namespace AuthService.Profiles

@@ -4,7 +4,7 @@ using EventService.Extensions;
 using EventService.Models;
 using EventService.Models.Dtos;
 using MassTransit;
-using MessageBusEvents.Models;
+using MessageBusEvents;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.Controllers
