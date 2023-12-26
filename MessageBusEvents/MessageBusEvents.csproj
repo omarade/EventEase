@@ -7,9 +7,11 @@
     <AssemblyName>MessageBusEvents</AssemblyName>
     <PackageId>EventEase.MessageBusEvents</PackageId>
     <Authors>EventEase</Authors>
+    <Company>EventEase</Company>
+    <Product>MessageEvents</Product>
     <Description>Message bus events for EventEase system</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageTags>Models, EventEase</PackageTags>
   </PropertyGroup>
 
 </Project>
