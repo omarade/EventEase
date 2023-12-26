@@ -6,10 +6,10 @@
     <Nullable>disable</Nullable>
     <AssemblyName>MessageBusEvents</AssemblyName>
     <PackageId>EventEase.MessageBusEvents</PackageId>
+    <Version>1.0.10</Version>
     <Authors>EventEase</Authors>
     <Company>EventEase</Company>
-    <Product>MessageEvents</Product>
-    <Version>1.0.7</Version>
+    <Product>MessageBusEvents</Product>
     <Description>Message bus events for EventEase system</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Models, EventEase</PackageTags>

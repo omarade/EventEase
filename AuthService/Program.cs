@@ -10,20 +10,28 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{builder.Configuration["RabbitMQPort"]}";
+var rabbitMQ = "";
+var jwtConfig = "";
+var connectionString = "";
 
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
 //Configure Databases
 if (builder.Environment.IsProduction())
 {
+    rabbitMQ = Environment.GetEnvironmentVariable("RABBIT_MQ");
+    jwtConfig = Environment.GetEnvironmentVariable("JWT");
+    connectionString = Environment.GetEnvironmentVariable("AUTH_DB_CONNECTION_STRING");
+
     Console.WriteLine("----> Using SqlServer Db");
     builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlite(connectionString)
+    );
 }
 else
 {
     rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{builder.Configuration["RabbitMQPort"]}";
+    jwtConfig = builder.Configuration.GetSection("JwtConfig:Secret").Value;
 
     Console.WriteLine("----> Using InMem Db");
     builder.Services.AddDbContext<AppDbContext>(opt =>
@@ -81,7 +89,7 @@ builder.Services.AddAuthentication(options =>
     })
     .AddJwtBearer(jwt => 
     {
-        var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("JwtConfig:Secret").Value);
+        var key = Encoding.ASCII.GetBytes(jwtConfig);
         jwt.SaveToken = true;
 
         jwt.TokenValidationParameters = new TokenValidationParameters()
