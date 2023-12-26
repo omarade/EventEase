@@ -28,41 +28,43 @@ namespace AuthService.Data
                 
             // }
 
-            // Create roles
-            roleManager.CreateAsync(new IdentityRole("Admin"));
-            roleManager.CreateAsync(new IdentityRole("Venue"));
-            roleManager.CreateAsync(new IdentityRole("Client"));
+            if(!isProd) {
+                // Create roles
+                roleManager.CreateAsync(new IdentityRole("Admin"));
+                roleManager.CreateAsync(new IdentityRole("Venue"));
+                roleManager.CreateAsync(new IdentityRole("Client"));
 
-            // Create users with different roles
-            // 1. Admin
-            var admin = new IdentityUser()
-            {
-                Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995b",
-                Email = "admin@gmail.com",
-                UserName = "admin@gmail.com"
-            };
-            userManager.CreateAsync(admin, "Pa$$w0rd!");
-            userManager.AddToRoleAsync(admin, "Admin");
+                // Create users with different roles
+                // 1. Admin
+                var admin = new IdentityUser()
+                {
+                    Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995b",
+                    Email = "admin@gmail.com",
+                    UserName = "admin@gmail.com"
+                };
+                userManager.CreateAsync(admin, "Pa$$w0rd!");
+                userManager.AddToRoleAsync(admin, "Admin");
 
-            // 2. Venue
-            var venue = new IdentityUser()
-            {
-                Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995a",
-                Email = "venue@gmail.com",
-                UserName = "venue@gmail.com"
-            };
-            userManager.CreateAsync(venue, "Pa$$w0rd!");
-            userManager.AddToRoleAsync(venue, "Venue");
+                // 2. Venue
+                var venue = new IdentityUser()
+                {
+                    Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995a",
+                    Email = "venue@gmail.com",
+                    UserName = "venue@gmail.com"
+                };
+                userManager.CreateAsync(venue, "Pa$$w0rd!");
+                userManager.AddToRoleAsync(venue, "Venue");
 
-            // 3. Client
-            var client = new IdentityUser()
-            {
-                Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995c",
-                Email = "client@gmail.com",
-                UserName = "client@gmail.com"
-            };
-            userManager.CreateAsync(client, "Pa$$w0rd!");
-            userManager.AddToRoleAsync(client, "Client");
+                // 3. Client
+                var client = new IdentityUser()
+                {
+                    Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995c",
+                    Email = "client@gmail.com",
+                    UserName = "client@gmail.com"
+                };
+                userManager.CreateAsync(client, "Pa$$w0rd!");
+                userManager.AddToRoleAsync(client, "Client");
+            }
         }
     }   
 }
