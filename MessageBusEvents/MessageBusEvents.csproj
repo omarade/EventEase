@@ -9,6 +9,7 @@
     <Authors>EventEase</Authors>
     <Company>EventEase</Company>
     <Product>MessageEvents</Product>
+    <Version>1.0.7</Version>
     <Description>Message bus events for EventEase system</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Models, EventEase</PackageTags>
