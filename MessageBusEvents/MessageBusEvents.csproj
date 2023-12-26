@@ -4,8 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <AssemblyName>$(AssemblyName)</AssemblyName>
-    <PackageId>EventEase.$(AssemblyName)</PackageId>
+    <AssemblyName>MessageBusEvents</AssemblyName>
+    <PackageId>EventEase.MessageBusEvents</PackageId>
     <Authors>EventEase</Authors>
     <Description>Message bus events for EventEase system</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
