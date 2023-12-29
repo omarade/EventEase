@@ -492,5 +492,5 @@ app.db-shm
 app.db-wal
 
 # Private files
-cheatsheet.txt
+cheatsheet.md
 resources.txt
