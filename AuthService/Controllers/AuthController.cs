@@ -36,6 +36,11 @@ namespace AuthService.Controllers
             _publishEndpoint = publishEndpoint;
         }
 
+        /// <summary>
+        /// Login endpoint for auth
+        /// </summary>
+        /// <param name="loginDto">username and password</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
@@ -89,18 +94,18 @@ namespace AuthService.Controllers
                     UserName = registerDto.Email
                 };
 
+                //Check if role exists
+                var roleExists = await _roleManager.RoleExistsAsync(registerDto.Role);
+                if (!roleExists)
+                {
+                    _logger.LogInformation($"Role type '{registerDto.Role}' does not exist");
+                    return BadRequest($"Role type '{registerDto.Role}' does not exist");
+                }
+
                 var isCreated = await _userManager.CreateAsync(user, registerDto.Password);
 
                 if(isCreated.Succeeded)
                 {
-                    //Check if role exists
-                    var roleExists = await _roleManager.RoleExistsAsync(registerDto.Role);
-                    if (!roleExists)
-                    {
-                        _logger.LogInformation($"Role type '{registerDto.Role}' does not exist");
-                        return BadRequest($"Role type '{registerDto.Role}' does not exist");
-                    }
-
                     //Assign role to user
                     var result = await _userManager.AddToRoleAsync(user, registerDto.Role);
 

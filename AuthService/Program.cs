@@ -25,7 +25,7 @@ if (builder.Environment.IsProduction())
 
     Console.WriteLine("----> Using SqlServer Db");
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlite(connectionString)
+        options.UseSqlServer(connectionString)
     );
 }
 else
@@ -33,10 +33,17 @@ else
     rabbitMQ = $"amqp://guest:guest@{builder.Configuration["RabbitMQHost"]}:{builder.Configuration["RabbitMQPort"]}";
     jwtConfig = builder.Configuration.GetSection("JwtConfig:Secret").Value;
 
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
     Console.WriteLine("----> Using InMem Db");
     builder.Services.AddDbContext<AppDbContext>(opt =>
-        opt.UseInMemoryDatabase("InMem")
+       opt.UseInMemoryDatabase("InMem")
     );
+    // Console.WriteLine(connectionString);
+    // builder.Services.AddDbContext<AppDbContext>(options =>
+    //     //options.UseSqlite(connectionString)
+    //     options.UseSqlServer(connectionString)
+    // );
 }
 
 // Add services to the container.
@@ -99,7 +106,7 @@ builder.Services.AddAuthentication(options =>
             ValidateIssuer = false,
             ValidateAudience = false,
             RequireExpirationTime = false,
-            ValidateLifetime = true
+            ValidateLifetime = true,
         };
     });
 
@@ -114,7 +121,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-PrepData.PrepPopulation(app, app.Environment.IsProduction());
+
 
 app.UseHttpsRedirection();
 
@@ -122,5 +129,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+PrepData.PrepPopulation(app, app.Environment.IsProduction());
 
 app.Run();
