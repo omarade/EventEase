@@ -14,14 +14,17 @@ var rabbitMQ = "";
 var jwtConfig = "";
 var connectionString = "";
 
-builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
+//builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
 //Configure Databases
 if (builder.Environment.IsProduction())
 {
-    rabbitMQ = Environment.GetEnvironmentVariable("RABBIT_MQ");
-    jwtConfig = Environment.GetEnvironmentVariable("JWT");
-    connectionString = Environment.GetEnvironmentVariable("AUTH_DB_CONNECTION_STRING");
+    rabbitMQ = "amqp://guest:guest@rabbitmq-clusterip-srv:5672";
+    Console.WriteLine(rabbitMQ);
+    jwtConfig = Environment.GetEnvironmentVariable("jwt");
+    Console.WriteLine(jwtConfig);
+    connectionString = Environment.GetEnvironmentVariable("auth-db");
+    Console.WriteLine(connectionString);
 
     Console.WriteLine("----> Using SqlServer Db");
     builder.Services.AddDbContext<AppDbContext>(options =>
