@@ -24,6 +24,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      rabbitmq:
+        image: rabbitmq:latest
+        ports:
+          - 5672:5672
+          
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
