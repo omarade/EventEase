@@ -11,7 +11,31 @@ on:
   workflow_dispatch:
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
 
+    services:
+      rabbitmq:
+        image: rabbitmq:latest
+        ports:
+          - 5672:5672
+          
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build
+    - name: Unit Test UserService
+      run: dotnet test ./UserService.UnitTests    
+    - name: Integration Test UserService
+      run: dotnet test ./UserService.IntegrationTests
+      
   build:
 
     runs-on: ubuntu-latest
