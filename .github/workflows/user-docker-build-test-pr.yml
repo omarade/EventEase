@@ -25,4 +25,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Test User Service
-      run: dotnet test UserService
+      run: dotnet test
