@@ -39,7 +39,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    # runs only if test passed
+    needs: [test]
     steps:
     - uses: actions/checkout@v3
     
