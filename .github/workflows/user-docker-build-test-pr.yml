@@ -28,11 +28,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - name: Go to Unit test project
-      run: cd UserService.UnitTests
-    - name: Unit Test User Service
+    - name: Test User Service
       run: dotnet test
-    - name: Go to Integration test project
-      run: cd UserService.IntegrationTests      
-    - name: Integration Test User Service
-      run: dotnet test ./UserService.IntegrationTests
+    # - name: Go to Integration test project
+    #   run: cd UserService.IntegrationTests      
+    # - name: Integration Test User Service
+    #   run: dotnet test ./UserService.IntegrationTests
