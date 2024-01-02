@@ -25,6 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Unit Test User Service
-      run: dotnet test UserService.UnitTests
+      run: dotnet test ./UserService.UnitTests
     - name: Integration Test User Service
-      run: dotnet test UserService.IntegrationTests
+      run: dotnet test ./UserService.IntegrationTests
