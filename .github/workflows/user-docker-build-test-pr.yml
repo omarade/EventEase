@@ -43,5 +43,5 @@ jobs:
       run: dotnet build
     - name: Unit Test UserService
       run: dotnet test ./UserService.UnitTests    
-    - name: Integration Test User Service
+    - name: Integration Test UserService
       run: dotnet test ./UserService.IntegrationTests
