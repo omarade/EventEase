@@ -1,4 +1,4 @@
-name: UserService Docker Build
+name: UserService Docker Build & Test
 
 on:
   pull_request:
@@ -20,3 +20,9 @@ jobs:
     - uses: actions/checkout@v3         
     - name: Build the Docker image
       run: docker build -t ${{ secrets.DH_USERNAME }}/userservice:latest -f UserService/Dockerfile ./UserService
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test User Service
+      run: dotnet test
