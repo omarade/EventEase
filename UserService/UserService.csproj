@@ -23,5 +23,8 @@
   <!-- <ItemGroup>
     <ProjectReference Include="..\MessageBusEvents\MessageBusEvents.csproj" />
   </ItemGroup> -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="UserService.IntegrationTests" /> 
+  </ItemGroup>
 
 </Project>

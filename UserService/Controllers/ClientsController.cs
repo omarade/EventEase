@@ -48,15 +48,15 @@ namespace UserService.Controllers
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var client = _clientRepo.GetClientById(id);
-
-            if (clientId != client.ExternalId)
-            {
-                return Unauthorized();
-            }
+            var client = _clientRepo.GetClientById(id);            
 
             if(client != null)
             {
+                if (clientId != client.ExternalId)
+                {
+                    return Unauthorized();
+                }
+
                 return Ok(_mapper.Map<ClientReadDto>(client));
             }
             else 

@@ -17,19 +17,19 @@ namespace AuthService.Data
         private static async Task SeedData(AppDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, bool isProd)
         {
             //Apply data migration
-            if(isProd & context.Database.GetMigrations().Count() == 0)
-            {
-                Console.WriteLine("----> Attempting to apply migrations...");
-                try
-                {
-                    context.Database.Migrate();
-                    return;
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine($"----> Could not run migrations: {e.Message}");
-                }                
-            }
+            // if(isProd & context.Database.GetMigrations().Count() == 0)
+            // {
+            //     Console.WriteLine("----> Attempting to apply migrations...");
+            //     try
+            //     {
+            //         context.Database.Migrate();
+            //         return;
+            //     }
+            //     catch(Exception e)
+            //     {
+            //         Console.WriteLine($"----> Could not run migrations: {e.Message}");
+            //     }                
+            // }
             
 
             if(!isProd) {

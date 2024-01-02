@@ -14,8 +14,6 @@ var rabbitMQ = "";
 var jwtConfig = "";
 var connectionString = "";
 
-builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
-
 //Configure Databases
 if (builder.Environment.IsProduction())
 {
@@ -42,6 +40,8 @@ else
     builder.Services.AddDbContext<AppDbContext>(opt =>
        opt.UseInMemoryDatabase("InMem")
     );
+
+    builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
     // Console.WriteLine(connectionString);
     // builder.Services.AddDbContext<AppDbContext>(options =>
     //     //options.UseSqlite(connectionString)
