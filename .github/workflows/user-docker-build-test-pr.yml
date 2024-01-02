@@ -23,7 +23,14 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+      
     steps:
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build
+    - name: Test with the dotnet CLI
+      run: dotnet test
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
