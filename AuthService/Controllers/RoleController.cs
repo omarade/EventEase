@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AuthService.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/auth/[controller]")]
     public class RoleController : ControllerBase
     {
         private readonly AppDbContext _apiDbContext;
