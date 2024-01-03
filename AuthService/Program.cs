@@ -24,11 +24,22 @@ if (builder.Environment.IsProduction())
     connectionString = Environment.GetEnvironmentVariable("AUTH_DB_CONNECTION_STRING");
     Console.WriteLine(connectionString);
 
+            // Read JwtConfig from environment variables
+    var jwtConfigObj = new JwtConfig
+    {
+        Secret = jwtConfig ?? throw new InvalidOperationException("JWT_SECRET environment variable not set.")
+        // Set other properties as needed...
+    };
+
+    builder.Services.AddSingleton(jwtConfigObj);
+
     //Map Env Var to JWT Config
     builder.Services.Configure<JwtConfig>(config =>
     {
-        config.Secret = jwtConfig;
+        config.Secret = jwtConfigObj.Secret;
     });
+
+    
     
     Console.WriteLine("----> Using SqlServer Db");
     builder.Services.AddDbContext<AppDbContext>(options =>
