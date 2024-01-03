@@ -23,6 +23,12 @@ if (builder.Environment.IsProduction())
     Console.WriteLine(jwtConfig);
     connectionString = Environment.GetEnvironmentVariable("AUTH_DB_CONNECTION_STRING");
     Console.WriteLine(connectionString);
+
+    //Map Env Var to JWT Config
+    builder.Services.Configure<JwtConfig>(config =>
+    {
+        config.Secret = jwtConfig;
+    });
     
     Console.WriteLine("----> Using SqlServer Db");
     builder.Services.AddDbContext<AppDbContext>(options =>
