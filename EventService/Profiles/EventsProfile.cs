@@ -1,7 +1,7 @@
 using AutoMapper;
 using EventService.Models;
 using EventService.Models.Dtos;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 
 namespace EventService.Profiles
 {
@@ -20,6 +20,10 @@ namespace EventService.Profiles
             CreateMap<Event, EventCreated>();
             CreateMap<Event, EventUpdated>();
             CreateMap<Event, EventDeleted>();
+            CreateMap<Venue, MessageBusEvents.Models.Dto.Venue>()
+                .ForMember(dest => dest.Id, opt =>
+                    opt.MapFrom(src => src.ExternalId)
+                );
 
             CreateMap<VenueCreated, Venue>()
                 .ForMember(dest => dest.ExternalId, opt =>

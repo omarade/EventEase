@@ -2,7 +2,7 @@ using AutoMapper;
 using EventService.Data;
 using EventService.Models;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 
 namespace EventService.Consumers
 {
@@ -33,7 +33,7 @@ namespace EventService.Consumers
 
             _venueRepo.CreateVenue(venueModel);
 
-            _venueRepo.SaveChanges();
+            await _venueRepo.SaveChanges();
         }
     }
 }

@@ -19,31 +19,31 @@ namespace EventService.Data
                 throw new ArgumentNullException(nameof(client));
             }
 
-            _context.Clients.AddAsync(client);
+            _context.Clients.Add(client);
         }
 
-        public IEnumerable<Client> GetAllClients()
+        public async Task<IEnumerable<Client>> GetAllClients()
         {
-            return _context.Clients.ToList();
+            return await _context.Clients.ToListAsync();
         }
 
-        public Client GetClientById(int id)
+        public async Task<Client> GetClientById(int id)
         {
-            return _context.Clients
+            return await _context.Clients
                 .Where(c => c.Id == id)
                 .Include(c => c.Events)
                     .ThenInclude(e => e.Venue)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
-        public Client GetClientByEmail(string email)
+        public async Task<Client> GetClientByEmail(string email)
         {
-            return _context.Clients.FirstOrDefault(c => c.Email == email);
+            return await _context.Clients.FirstOrDefaultAsync(c => c.Email == email);
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            return (_context.SaveChanges() >= 0);
+            return (await _context.SaveChangesAsync() >= 0);
         }
 
         public void UpdateClient(Client client)
@@ -56,9 +56,9 @@ namespace EventService.Data
             _context.Clients.Remove(client);
         }
 
-        public Client GetClientByExternalId(string id)
+        public async Task<Client> GetClientByExternalId(string id)
         {
-            return _context.Clients.FirstOrDefault(c => c.ExternalId == id);
+            return await _context.Clients.FirstOrDefaultAsync(c => c.ExternalId == id);
         }
     }
 }

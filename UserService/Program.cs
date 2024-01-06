@@ -17,17 +17,20 @@ public class Program
         var jwtConfig = "";
         var connectionString = "";
 
-        //Configure Databases
+        //Env specific configuration
         if (builder.Environment.IsProduction())
         {
             rabbitMQ = Environment.GetEnvironmentVariable("RABBIT_MQ");
+            Console.WriteLine(rabbitMQ);
             jwtConfig = Environment.GetEnvironmentVariable("JWT");
+            Console.WriteLine(jwtConfig);
             connectionString = Environment.GetEnvironmentVariable("USER_DB_CONNECTION_STRING");
-
+            Console.WriteLine(connectionString);
+         
             Console.WriteLine("----> Using SqlServer Db");
-            // builder.Services.AddDbContext<AppDbContext>(opt => 
-            //     opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn"))
-            // );  
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(connectionString)
+            );
         }
         else
         {

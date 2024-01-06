@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using EventService.Data;
-using EventService.Models;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 
 namespace EventService.Consumers
 {
@@ -29,13 +28,13 @@ namespace EventService.Consumers
             _logger.LogInformation($"----> Got new message {venueUpdated.Name}");
 
             // update venue
-            var venueModel = _venueRepo.GetVenueByExternalId(venueUpdated.Id);
+            var venueModel = await _venueRepo.GetVenueByExternalId(venueUpdated.Id);
 
             venueModel.Name = venueUpdated.Name;
 
             _venueRepo.UpdateVenue(venueModel);
 
-            _venueRepo.SaveChanges();
+            await _venueRepo.SaveChanges();
         }
     }
 }

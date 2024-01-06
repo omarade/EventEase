@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using EventService.Data;
-using EventService.Models;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 
 namespace EventService.Consumers
 {
@@ -29,11 +28,11 @@ namespace EventService.Consumers
             _logger.LogInformation($"----> Got new message {venueDeleted.Id}");
 
             // delete venue
-            var venueModel = _venueRepo.GetVenueByExternalId(venueDeleted.Id);
+            var venueModel = await _venueRepo.GetVenueByExternalId(venueDeleted.Id);
 
             _venueRepo.DeleteVenue(venueModel);
 
-            _venueRepo.SaveChanges();
+            await _venueRepo.SaveChanges();
         }
     }
 }

@@ -11,6 +11,7 @@ var connectionString = "";
 var databaseName = "";
 var eventsCollectionName = "";
 
+//Env specific configuration
 if (builder.Environment.IsProduction())
 {
     rabbitMQ = Environment.GetEnvironmentVariable("RABBIT_MQ");

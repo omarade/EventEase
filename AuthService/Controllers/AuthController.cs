@@ -3,7 +3,7 @@ using AuthService.Dtos;
 using AuthService.Helpers;
 using AutoMapper;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

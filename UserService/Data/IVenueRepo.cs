@@ -4,11 +4,11 @@ namespace UserService.Data
 {
     public interface IVenueRepo
     {
-        bool SaveChanges();
+        Task<bool> SaveChanges();
 
-        IEnumerable<Venue> GetAllVenues();
+        Task<IEnumerable<Venue>> GetAllVenues();
 
-        Venue GetVenueById(int id);
+        Task<Venue> GetVenueById(int id);
 
         void CreateVenue(Venue venue);
 

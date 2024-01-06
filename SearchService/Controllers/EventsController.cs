@@ -34,7 +34,6 @@ namespace SearchService.Controllers
         public async Task<IActionResult> GetEventsByDate(DateTime date, int pageSize, int pageNumber)
         {
             var events = await _eventRepo.GetEventsByDate(date, pageSize, pageNumber);
-            Console.WriteLine(date);
 
             return Ok(events);
         }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 using UserService.Data;
 using UserService.Models;
 
@@ -33,7 +33,7 @@ namespace UserService.Consumers
 
             _venueRepo.CreateVenue(venueModel);
 
-            _venueRepo.SaveChanges();
+            await _venueRepo.SaveChanges();
         }
     }
 }

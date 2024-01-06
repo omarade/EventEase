@@ -25,27 +25,27 @@ namespace EventService.Data
             _context.Venues.Add(venue);
         }
 
-        public IEnumerable<Venue> GetAllVenues()
+        public async Task<IEnumerable<Venue>> GetAllVenues()
         {
-            return _context.Venues.ToList();
+            return await _context.Venues.ToListAsync();
         }
 
-        public Venue GetVenueById(int id)
+        public async Task<Venue> GetVenueById(int id)
         {
-            return _context.Venues
+            return await _context.Venues
                 .Where(v => v.Id == id)
                 .Include(v => v.Events)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
-        public Venue GetVenueByExternalId(string id)
+        public async Task<Venue> GetVenueByExternalId(string id)
         {
-            return _context.Venues.FirstOrDefault(v => v.ExternalId == id);
+            return await _context.Venues.FirstOrDefaultAsync(v => v.ExternalId == id);
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            return (_context.SaveChanges() >= 0);
+            return (await _context.SaveChangesAsync() >= 0);
         }
 
         public void UpdateVenue(Venue venue)
@@ -57,7 +57,5 @@ namespace EventService.Data
         {
             _context.Venues.Remove(venue);
         }
-
-        
     }
 }

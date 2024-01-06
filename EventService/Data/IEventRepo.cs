@@ -4,11 +4,11 @@ namespace EventService.Data
 {
     public interface IEventRepo
     {
-        bool SaveChanges();
+        Task<bool> SaveChanges();
 
-        IEnumerable<Event> GetAllEvents();
+        Task<IEnumerable<Event>> GetAllEvents();
 
-        Event GetEventById(int id);
+        Task<Event> GetEventById(int id);
 
         void CreateEvent(Event eventt);
 

@@ -1,6 +1,6 @@
 using AutoMapper;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,25 +30,25 @@ namespace UserService.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public ActionResult<IEnumerable<ClientReadDto>> GetClients()
+        public async Task<ActionResult<IEnumerable<ClientReadDto>>> GetClients()
         {
             Console.WriteLine("---> Getting Clients....");
 
-            var clients = _clientRepo.GetAllClients();
+            var clients = await _clientRepo.GetAllClients();
 
             return Ok(_mapper.Map<IEnumerable<ClientReadDto>>(clients));
         }
         
         [HttpGet("{id}", Name = "GetClientById")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public ActionResult<ClientReadDto> GetClientById(int id)
+        public async Task<ActionResult<ClientReadDto>> GetClientById(int id)
         {
             Console.WriteLine("---> Getting Client with id: " + id);
 
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var client = _clientRepo.GetClientById(id);            
+            var client = await _clientRepo.GetClientById(id);            
 
             if(client != null)
             {
@@ -66,14 +66,14 @@ namespace UserService.Controllers
         }
 
         [HttpGet("GetClientByEmail", Name = "GetClientByEmail")]
-        public ActionResult<ClientReadDto> GetClientByEmail(string email)
+        public async Task<ActionResult<ClientReadDto>> GetClientByEmail(string email)
         {
             Console.WriteLine("---> Getting Client with email: " + email);
             
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var client = _clientRepo.GetClientByEmail(email);
+            var client = await _clientRepo.GetClientByEmail(email);
 
             if (clientId != client.ExternalId)
             {
@@ -92,12 +92,12 @@ namespace UserService.Controllers
 
        [HttpPut("{id}")]
        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-       public ActionResult<ClientUpdateDto> UpdateClient(int id, ClientUpdateDto clientUpdateDto)
+       public async Task<ActionResult<ClientUpdateDto>> UpdateClient(int id, ClientUpdateDto clientUpdateDto)
        {
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var client = _clientRepo.GetClientById(id);
+            var client = await _clientRepo.GetClientById(id);
 
             if (client is null)
             {
@@ -113,12 +113,12 @@ namespace UserService.Controllers
             client.Name = clientUpdateDto.Name;
             
             _clientRepo.UpdateClient(client);
-            if(_clientRepo.SaveChanges())
+            if(await _clientRepo.SaveChanges())
             {
                 Console.WriteLine("----> Sending message ClientUpdated");
                 var clientUpdated = _mapper.Map<ClientUpdated>(client);
 
-                _publishEndpoint.Publish<ClientUpdated>(clientUpdated);
+                await _publishEndpoint.Publish<ClientUpdated>(clientUpdated);
             }
 
             return NoContent();
@@ -126,12 +126,12 @@ namespace UserService.Controllers
 
        [HttpDelete("{id}")]
        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-       public ActionResult DeleteClient(int id)
+       public async Task<ActionResult> DeleteClient(int id)
        {
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var client = _clientRepo.GetClientById(id);
+            var client = await _clientRepo.GetClientById(id);
 
             if (client is null)
             {
@@ -146,10 +146,10 @@ namespace UserService.Controllers
             var clientDeleted = _mapper.Map<ClientDeleted>(client);
 
             _clientRepo.DeleteClient(client);
-            if(_clientRepo.SaveChanges())
+            if(await _clientRepo.SaveChanges())
             {
                 //Publish clientDeleted Event
-                _publishEndpoint.Publish<ClientDeleted>(clientDeleted);
+                await _publishEndpoint.Publish<ClientDeleted>(clientDeleted);
             }
             
             return Ok();

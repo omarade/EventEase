@@ -4,13 +4,13 @@ namespace EventService.Data
 {
     public interface IVenueRepo
     {
-        bool SaveChanges();
+        Task<bool> SaveChanges();
 
-        IEnumerable<Venue> GetAllVenues();
+        Task<IEnumerable<Venue>> GetAllVenues();
 
-        Venue GetVenueById(int id);
+        Task<Venue> GetVenueById(int id);
 
-        Venue GetVenueByExternalId(string id);
+        Task<Venue> GetVenueByExternalId(string id);
 
         void CreateVenue(Venue venue);
 

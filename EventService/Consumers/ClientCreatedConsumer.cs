@@ -2,7 +2,7 @@
 using EventService.Data;
 using EventService.Models;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 
 namespace EventService.Consumers
 {
@@ -33,7 +33,7 @@ namespace EventService.Consumers
 
             _clientRepo.CreateClient(clientModel);
 
-            _clientRepo.SaveChanges();
+            await _clientRepo.SaveChanges();
         }
     }
 }

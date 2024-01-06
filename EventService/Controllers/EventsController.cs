@@ -4,7 +4,7 @@ using EventService.Extensions;
 using EventService.Models;
 using EventService.Models.Dtos;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.Controllers
@@ -27,27 +27,27 @@ namespace EventService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<EventReadDto>> GetAllEvents()
+        public async Task<ActionResult<IEnumerable<EventReadDto>>> GetAllEvents()
         {
             Console.WriteLine("---> Getting Events....");
 
-            var events = _eventRepo.GetAllEvents();
+            var events = await _eventRepo.GetAllEvents();
 
             return Ok(_mapper.Map<IEnumerable<EventReadDto>>(events));
         }
 
         [HttpGet("{id}", Name = "GetEventById")]
-        public ActionResult<EventReadDto> GetEventById(int id)
+        public async Task<ActionResult<EventReadDto>> GetEventById(int id)
         {
             Console.WriteLine("---> Getting Event with id: " + id);
 
-            var ev = _eventRepo.GetEventById(id);
+            var ev = await _eventRepo.GetEventById(id);
 
             return Ok(_mapper.Map<EventReadDto>(ev));
         }
 
         [HttpPost]
-        public ActionResult<EventReadDto> CreateEvent(EventCreateDto eventCreateDto)
+        public async Task<ActionResult<EventReadDto>> CreateEvent(EventCreateDto eventCreateDto)
         {
             if (ModelState.IsValid)
             {
@@ -56,12 +56,14 @@ namespace EventService.Controllers
                 _eventRepo.CreateEvent(newEvent);
 
                 // Publish EventCreated
-                if (_eventRepo.SaveChanges())
+                if (await _eventRepo.SaveChanges())
                 {
                     var eventCreated = _mapper.Map<EventCreated>(newEvent);
-                    eventCreated.VenueId = newEvent.Venue.ExternalId;
+                    var eventVenue = _mapper.Map<MessageBusEvents.Models.Dto.Venue>(newEvent.Venue);
 
-                    _publishEndpoint.Publish<EventCreated>(eventCreated);
+                    eventCreated.Venue = eventVenue;
+
+                    await _publishEndpoint.Publish<EventCreated>(eventCreated);
                 }
 
                 var eventReadDto = _mapper.Map<EventReadDto>(newEvent);
@@ -73,9 +75,9 @@ namespace EventService.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<EventUpdateDto> UpdateEvent(int id, EventUpdateDto eventUpdateDto)
+        public async Task<ActionResult<EventUpdateDto>> UpdateEvent(int id, EventUpdateDto eventUpdateDto)
         {
-            var eventModel = _eventRepo.GetEventById(id);
+            var eventModel = await _eventRepo.GetEventById(id);
 
             if (eventModel is null)
             {
@@ -93,24 +95,24 @@ namespace EventService.Controllers
             _eventRepo.UpdateEvent(eventModel);
 
             // Publish EventUpdated
-            if (_eventRepo.SaveChanges())
+            if (await _eventRepo.SaveChanges())
             {
                 var eventUpdated = _mapper.Map<EventUpdated>(eventModel);
 
-                _publishEndpoint.Publish<EventUpdated>(eventUpdated);
+                await _publishEndpoint.Publish<EventUpdated>(eventUpdated);
             }
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteEvent(int id)
+        public async Task<ActionResult> DeleteEvent(int id)
         {
 
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var eventModel = _eventRepo.GetEventById(id);
+            var eventModel = await _eventRepo.GetEventById(id);
 
             if (eventModel is null)
             {
@@ -120,25 +122,25 @@ namespace EventService.Controllers
             _eventRepo.DeleteEvent(eventModel);
 
             // Publish EventDeleted
-            if (_eventRepo.SaveChanges())
+            if (await _eventRepo.SaveChanges())
             {
                 var eventDeleted = _mapper.Map<EventDeleted>(eventModel);
 
-                _publishEndpoint.Publish<EventDeleted>(eventDeleted);
+                await _publishEndpoint.Publish<EventDeleted>(eventDeleted);
             }
 
             return Ok();
         }
 
         [HttpPost("{id}/reserve-ticket")]
-        public ActionResult ReserveTicket(int id, ClientEventCreateDto clientEventCreateDto)
+        public async Task<ActionResult> ReserveTicket(int id, ClientEventCreateDto clientEventCreateDto)
         {
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
-            var client = _clientRepo.GetClientByExternalId(clientId);
+            var client = await _clientRepo.GetClientByExternalId(clientId);
 
-            var eventModel = _eventRepo.GetEventById(id);
+            var eventModel = await _eventRepo.GetEventById(id);
 
             if(eventModel is null)
             {
@@ -167,11 +169,11 @@ namespace EventService.Controllers
             _eventRepo.UpdateEvent(eventModel);
 
             // Publish EventUpdated
-            if (_eventRepo.SaveChanges())
+            if (await _eventRepo.SaveChanges())
             {
                 var eventUpdated = _mapper.Map<EventUpdated>(eventModel);
 
-                _publishEndpoint.Publish<EventUpdated>(eventUpdated);
+                await _publishEndpoint.Publish<EventUpdated>(eventUpdated);
             }
 
             return Ok();

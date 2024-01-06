@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using UserService.Models;
 
 namespace UserService.Data
@@ -21,19 +22,19 @@ namespace UserService.Data
         }
 
 
-        public IEnumerable<Venue> GetAllVenues()
+        public async Task<IEnumerable<Venue>> GetAllVenues()
         {
-            return _context.Venues.ToList();
+            return await _context.Venues.ToListAsync();
         }
 
-        public Venue GetVenueById(int id)
+        public async Task<Venue> GetVenueById(int id)
         {
-            return _context.Venues.FirstOrDefault(v => v.Id == id);
+            return await _context.Venues.FirstOrDefaultAsync(v => v.Id == id);
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            return (_context.SaveChanges() >= 0);
+            return (await _context.SaveChangesAsync() >= 0);
         }
 
         public void UpdateVenue(Venue venue)

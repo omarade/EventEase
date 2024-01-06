@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using UserService.Models;
 
 namespace UserService.Data
@@ -21,24 +22,24 @@ namespace UserService.Data
             _context.Clients.AddAsync(client);
         }
 
-        public IEnumerable<Client> GetAllClients()
+        public async Task<IEnumerable<Client>> GetAllClients()
         {
-            return _context.Clients.ToList();
+            return await _context.Clients.ToListAsync();
         }
 
-        public Client GetClientById(int id)
+        public async Task<Client> GetClientById(int id)
         {
-            return _context.Clients.FirstOrDefault(c => c.Id == id);
+            return await _context.Clients.FirstOrDefaultAsync(c => c.Id == id);
         }
         
-        public Client GetClientByEmail(string email)
+        public async Task<Client> GetClientByEmail(string email)
         {
-            return _context.Clients.FirstOrDefault(c => c.Email == email);
+            return await _context.Clients.FirstOrDefaultAsync(c => c.Email == email);
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            return (_context.SaveChanges() >= 0);
+            return (await _context.SaveChangesAsync() >= 0);
         }
 
         public void UpdateClient(Client client)

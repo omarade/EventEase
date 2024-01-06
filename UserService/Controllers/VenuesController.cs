@@ -1,6 +1,6 @@
 using AutoMapper;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,21 +26,21 @@ namespace UserService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<VenueReadDto>> GetVenues()
+        public async Task<ActionResult<IEnumerable<VenueReadDto>>> GetVenues()
         {
             Console.WriteLine("---> Getting Venues....");
 
-            var venues = _venueRepo.GetAllVenues();
+            var venues = await _venueRepo.GetAllVenues();
 
             return Ok(_mapper.Map<IEnumerable<VenueReadDto>>(venues));
         }
 
         [HttpGet("{id}", Name = "GetVenueById")]
-        public ActionResult<VenueReadDto> GetVenueById(int id)
+        public async Task<ActionResult<VenueReadDto>> GetVenueById(int id)
         {
             Console.WriteLine("---> Getting Venue with id: " + id);
 
-            var venue = _venueRepo.GetVenueById(id);
+            var venue = await _venueRepo.GetVenueById(id);
 
             if(venue != null)
             {
@@ -54,12 +54,12 @@ namespace UserService.Controllers
 
         [HttpPut("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public ActionResult<ClientUpdateDto> UpdateClient(int id, VenueUpdateDto venueUpdateDto)
+        public async Task<ActionResult<ClientUpdateDto>> UpdateClient(int id, VenueUpdateDto venueUpdateDto)
         {
             //Get logged in user Id from JWT.
             string venueId = this.User.GetId();
 
-            var venue = _venueRepo.GetVenueById(id);  
+            var venue = await _venueRepo.GetVenueById(id);  
 
             if (venueId != venue.ExternalId)
             {
@@ -73,12 +73,12 @@ namespace UserService.Controllers
             venue.City = venueUpdateDto.City;
            
             _venueRepo.UpdateVenue(venue);
-            if (_venueRepo.SaveChanges())
+            if (await _venueRepo.SaveChanges())
             {
                 Console.WriteLine("----> Sending message VenueUpdated");
                 var venueUpdated = _mapper.Map<VenueUpdated>(venue);
 
-                _publishEndpoint.Publish<VenueUpdated>(venueUpdated);
+                await _publishEndpoint.Publish<VenueUpdated>(venueUpdated);
             }
 
             return NoContent();
@@ -86,12 +86,12 @@ namespace UserService.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public ActionResult DeleteVenue(int id)
+        public async Task<ActionResult> DeleteVenue(int id)
         {
             //Get logged in user Id from JWT.
             string venueId = this.User.GetId();
 
-            var venue = _venueRepo.GetVenueById(id);
+            var venue = await _venueRepo.GetVenueById(id);
 
             if (venue is null)
             {
@@ -106,10 +106,12 @@ namespace UserService.Controllers
             var userDeleted = _mapper.Map<VenueDeleted>(venue);
 
             _venueRepo.DeleteVenue(venue);
-            _venueRepo.SaveChanges();
+            if(await _venueRepo.SaveChanges()) {
+                //Publish VenueDeleted Event
+                Console.WriteLine("----> Sending message VenueDeleted");
 
-            //Publish UserDeleted Event
-            _publishEndpoint.Publish<VenueDeleted>(userDeleted);
+                await _publishEndpoint.Publish<VenueDeleted>(userDeleted);
+            }
             
             return Ok();
         }

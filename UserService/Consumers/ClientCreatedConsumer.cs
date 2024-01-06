@@ -1,6 +1,6 @@
 using AutoMapper;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 using UserService.Data;
 using UserService.Models;
 
@@ -33,7 +33,7 @@ namespace UserService.Consumers
 
             _clientRepo.CreateClient(clientModel);
 
-            _clientRepo.SaveChanges();
+            await _clientRepo.SaveChanges();
         }
     }
 }

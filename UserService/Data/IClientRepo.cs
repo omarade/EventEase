@@ -4,13 +4,13 @@ namespace UserService.Data
 {
     public interface IClientRepo
     {
-        bool SaveChanges();
+        Task<bool> SaveChanges();
 
-        IEnumerable<Client> GetAllClients();
+        Task<IEnumerable<Client>> GetAllClients();
 
-        Client GetClientById(int id);
+        Task<Client> GetClientById(int id);
 
-        Client GetClientByEmail(string email);
+        Task<Client> GetClientByEmail(string email);
 
         void CreateClient(Client client);
 

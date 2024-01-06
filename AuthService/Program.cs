@@ -14,7 +14,7 @@ var rabbitMQ = "";
 var jwtConfig = "";
 var connectionString = "";
 
-//Configure Databases
+//Env specific configuration
 if (builder.Environment.IsProduction())
 {
     rabbitMQ = Environment.GetEnvironmentVariable("RABBIT_MQ");

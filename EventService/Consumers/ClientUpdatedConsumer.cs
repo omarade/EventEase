@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using EventService.Data;
-using EventService.Models;
 using MassTransit;
-using MessageBusEvents;
+using MessageBusEvents.Models;
 
 namespace EventService.Consumers
 {
@@ -29,13 +28,13 @@ namespace EventService.Consumers
             _logger.LogInformation($"----> Got new message {clientUpdated.Name}");
 
             // update client
-            var clientModel = _clientRepo.GetClientByExternalId(clientUpdated.Id);
+            var clientModel = await _clientRepo.GetClientByExternalId(clientUpdated.Id);
 
             clientModel.Name = clientUpdated.Name;
 
             _clientRepo.UpdateClient(clientModel);
 
-            _clientRepo.SaveChanges();
+            await _clientRepo.SaveChanges();
         }
     }
 }

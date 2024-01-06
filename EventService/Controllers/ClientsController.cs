@@ -19,11 +19,11 @@ namespace EventService.Controllers
         }
 
         [HttpGet("{id}", Name = "GetClientById")]
-        public ActionResult<ClientReadDto> GetClientById(int id)
+        public async Task<ActionResult<ClientReadDto>> GetClientById(int id)
         {
             Console.WriteLine("---> Getting Client with id: " + id);
 
-            var client = _clientRepo.GetClientById(id);
+            var client = await _clientRepo.GetClientById(id);
 
             return Ok(_mapper.Map<ClientReadDto>(client));
         }

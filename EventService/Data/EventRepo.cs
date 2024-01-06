@@ -22,27 +22,26 @@ namespace EventService.Data
             _context.Events.Add(createdEvent);
         }
 
-        public IEnumerable<Event> GetAllEvents()
+        public async Task<IEnumerable<Event>> GetAllEvents()
         {
-            return _context.Events
+            return await _context.Events
                 .Include(e => e.Venue)
                 .Include(e => e.Clients)
-                .ToList();
+                .ToListAsync();
         }
 
-        public Event GetEventById(int id)
+        public async Task<Event> GetEventById(int id)
         {
-            // return _context.Events.FirstOrDefault(e => e.Id == id);
-            return _context.Events
+            return await _context.Events
                 .Where(e => e.Id == id)
                 .Include(e => e.Venue)
                 .Include(e => e.Clients)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            return (_context.SaveChanges() >= 0);
+            return (await _context.SaveChangesAsync() >= 0);
         }
 
         public void UpdateEvent(Event updatedEvent)

@@ -19,11 +19,11 @@ namespace EventService.Controllers
         }
 
         [HttpGet("{id}", Name = "GetVenueById")]
-        public ActionResult<VenueReadDto> GetVenueById(int id)
+        public async Task<ActionResult<VenueReadDto>> GetVenueById(int id)
         {
             Console.WriteLine("---> Getting Venue with id: " + id);
 
-            var venue = _venueRepo.GetVenueById(id);
+            var venue = await _venueRepo.GetVenueById(id);
 
             return Ok(_mapper.Map<VenueReadDto>(venue));
         }
