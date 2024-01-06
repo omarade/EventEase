@@ -67,7 +67,6 @@ else
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//builder.Services.AddMass;
 builder.Services.AddMassTransit(config => {
     Console.WriteLine(rabbitMQ);
 

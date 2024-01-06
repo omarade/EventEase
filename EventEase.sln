@@ -11,17 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBusEvents", "Message
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventService", "EventService\EventService.csproj", "{FA12D758-4C85-42BA-B342-D33B58E11A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.IntegrationTests", "UserService.IntegrationTests\UserService.IntegrationTests.csproj", "{648332A3-7688-4CA2-BF6E-68564E68DC64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService.IntegrationTests", "UserService.IntegrationTests\UserService.IntegrationTests.csproj", "{648332A3-7688-4CA2-BF6E-68564E68DC64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.UnitTests", "UserService.UnitTests\UserService.UnitTests.csproj", "{5FBF0BA8-B743-4CD5-8A25-D79DAE656E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService.UnitTests", "UserService.UnitTests\UserService.UnitTests.csproj", "{5FBF0BA8-B743-4CD5-8A25-D79DAE656E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchService", "SearchService\SearchService.csproj", "{71CEB8D4-F7A3-4193-A9D7-0D94F884492F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D3D67510-6989-4364-A779-A7169BF14BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +47,12 @@ Global
 		{5FBF0BA8-B743-4CD5-8A25-D79DAE656E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FBF0BA8-B743-4CD5-8A25-D79DAE656E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FBF0BA8-B743-4CD5-8A25-D79DAE656E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71CEB8D4-F7A3-4193-A9D7-0D94F884492F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71CEB8D4-F7A3-4193-A9D7-0D94F884492F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71CEB8D4-F7A3-4193-A9D7-0D94F884492F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71CEB8D4-F7A3-4193-A9D7-0D94F884492F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
