@@ -1,3 +1,5 @@
+using MessageBusEvents.Models.Dto;
+
 namespace MessageBusEvents.Models
 {
     public class EventCreated
@@ -18,6 +20,6 @@ namespace MessageBusEvents.Models
 
         public int TotalTickets { get; set; }
 
-        public string VenueId { get; set; }
+        public Venue Venue { get; set; }
     }
 }
