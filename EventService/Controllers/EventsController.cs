@@ -5,6 +5,8 @@ using EventService.Models;
 using EventService.Models.Dtos;
 using MassTransit;
 using MessageBusEvents.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.Controllers
@@ -15,18 +17,21 @@ namespace EventService.Controllers
     {
         private readonly IEventRepo _eventRepo;
         private readonly IClientRepo _clientRepo;
+        private readonly IVenueRepo _venueRepo;
         private readonly IMapper _mapper;
         private readonly IPublishEndpoint _publishEndpoint;
 
-        public EventsController(IEventRepo eventRepo, IClientRepo clientRepo, IMapper mapper, IPublishEndpoint publishEndpoint)
+        public EventsController(IEventRepo eventRepo, IVenueRepo venueRepo, IClientRepo clientRepo, IMapper mapper, IPublishEndpoint publishEndpoint)
         {
             _eventRepo = eventRepo;
             _clientRepo = clientRepo;
+            _venueRepo = venueRepo;
             _mapper = mapper;
             _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<EventReadDto>>> GetAllEvents()
         {
             Console.WriteLine("---> Getting Events....");
@@ -47,10 +52,27 @@ namespace EventService.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Venue")]
         public async Task<ActionResult<EventReadDto>> CreateEvent(EventCreateDto eventCreateDto)
         {
             if (ModelState.IsValid)
             {
+                //Get logged in user Id from JWT.
+                string venueId = this.User.GetId();
+
+                var venue = await _venueRepo.GetVenueById(eventCreateDto.VenueId);
+
+                if(venue is null)
+                {
+                    return NotFound($"---> Venue was not found");
+                }
+
+                //validate logged in venue
+                if (venueId != venue.ExternalId)
+                {
+                    return Unauthorized();
+                }
+
                 var newEvent = _mapper.Map<Models.Event>(eventCreateDto);
 
                 _eventRepo.CreateEvent(newEvent);
@@ -75,8 +97,12 @@ namespace EventService.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Venue")]
         public async Task<ActionResult<EventUpdateDto>> UpdateEvent(int id, EventUpdateDto eventUpdateDto)
         {
+            //Get logged in user Id from JWT.
+            string venueId = this.User.GetId();
+
             var eventModel = await _eventRepo.GetEventById(id);
 
             if (eventModel is null)
@@ -84,7 +110,11 @@ namespace EventService.Controllers
                 return NotFound($"----> Event was not found");
             }
 
-            //check if venue own the event
+            //check if venue owns the event
+            if (venueId != eventModel.Venue.ExternalId)
+            {
+                return Unauthorized();
+            }
 
             //Mapping
             eventModel.Name = eventUpdateDto.Name;
@@ -106,17 +136,23 @@ namespace EventService.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Venue")]
         public async Task<ActionResult> DeleteEvent(int id)
         {
-
             //Get logged in user Id from JWT.
-            string clientId = this.User.GetId();
+            string venueId = this.User.GetId();
 
             var eventModel = await _eventRepo.GetEventById(id);
 
             if (eventModel is null)
             {
                 return NotFound($"----> Event was not found");
+            }
+
+            //check if venue owns the event
+            if (venueId != eventModel.Venue.ExternalId)
+            {
+                return Unauthorized();
             }
 
             _eventRepo.DeleteEvent(eventModel);
@@ -133,12 +169,17 @@ namespace EventService.Controllers
         }
 
         [HttpPost("{id}/reserve-ticket")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Client")]
         public async Task<ActionResult> ReserveTicket(int id, ClientEventCreateDto clientEventCreateDto)
         {
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
             var client = await _clientRepo.GetClientByExternalId(clientId);
+
+            if(clientId != client.ExternalId) {
+                return Unauthorized();
+            }
 
             var eventModel = await _eventRepo.GetEventById(id);
 
