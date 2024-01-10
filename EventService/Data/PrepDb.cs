@@ -1,4 +1,5 @@
 using EventService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventService.Data
 {
