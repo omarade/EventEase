@@ -109,6 +109,8 @@ builder.Services.AddCors(options =>
     );
 });
 
+// Health checks
+builder.Services.AddHealthChecks();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -168,6 +170,8 @@ app.UseCors(allowedSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHealthChecks("/healthz");
 
 app.MapControllers();
 

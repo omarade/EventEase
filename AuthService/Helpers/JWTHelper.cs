@@ -15,7 +15,7 @@ namespace AuthService.Helpers
 
             var key = Encoding.ASCII.GetBytes(jwtConfig.Secret);
 
-            var claims = await GetAllValidClaims(user, userClaims, userRoles);
+            var claims = GetAllValidClaims(user, userClaims, userRoles);
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
@@ -33,7 +33,7 @@ namespace AuthService.Helpers
         }
 
         //Get user's claims
-        private static async Task<List<Claim>> GetAllValidClaims(IdentityUser user, IList<Claim> userClaims, IList<string> userRoles)
+        private static List<Claim> GetAllValidClaims(IdentityUser user, IList<Claim> userClaims, IList<string> userRoles)
         {
             var options = new IdentityOptions();
 
