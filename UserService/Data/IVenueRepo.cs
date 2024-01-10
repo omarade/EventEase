@@ -6,7 +6,7 @@ namespace UserService.Data
     {
         Task<bool> SaveChanges();
 
-        Task<IEnumerable<Venue>> GetAllVenues();
+        Task<IEnumerable<Venue>> GetAllVenues(int pageSize, int pageNumber);
 
         Task<Venue> GetVenueById(int id);
 

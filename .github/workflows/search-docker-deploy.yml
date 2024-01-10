@@ -1,0 +1,37 @@
+name: SearchService Docker Deploy
+
+on:
+  push:
+    branches: 
+    - main 
+    paths:
+    - "SearchService/**"
+  
+  # Allows to run the workflow manually from actions tab
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Docker Login
+      uses: docker/login-action@v3.0.0
+      with:  
+        # Username used to log against the Docker registry
+        username: ${{ secrets.DH_USERNAME }}
+        # Password or personal access token used to log against the Docker registry
+        password: ${{ secrets.DH_PASSWORD }}
+        # Log out from the Docker registry at the end of a job
+        logout: true
+          
+    
+    - name: Build the Docker image
+      run: |
+        docker build -t ${{ secrets.DH_USERNAME }}/searchservice:${{ github.sha }} -t ${{ secrets.DH_USERNAME }}/searchservice:latest -f SearchService/Dockerfile ./SearchService
+        docker push ${{ secrets.DH_USERNAME }}/searchservice:${{ github.sha }}
+        docker push ${{ secrets.DH_USERNAME }}/searchservice:latest

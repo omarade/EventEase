@@ -6,7 +6,7 @@ namespace EventService.Data
     {
         Task<bool> SaveChanges();
 
-        Task<IEnumerable<Event>> GetAllEvents();
+        Task<IEnumerable<Event>> GetAllEvents(int pageSize, int pageNumber);
 
         Task<Event> GetEventById(int id);
 

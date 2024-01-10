@@ -10,7 +10,7 @@ using UserService.Models.Dtos;
 
 namespace UserService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users/[controller]")]
     [ApiController]
     public class VenuesController : ControllerBase
     {
@@ -25,16 +25,28 @@ namespace UserService.Controllers
             _publishEndpoint = publishEndpoint;
         }
 
+        /// <summary>
+        /// Get venues endpoint
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<VenueReadDto>>> GetVenues()
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<VenueReadDto>>> GetVenues(int pageSize = 20, int pageNumber = 1)
         {
             Console.WriteLine("---> Getting Venues....");
 
-            var venues = await _venueRepo.GetAllVenues();
+            var venues = await _venueRepo.GetAllVenues(pageSize, pageNumber);
 
             return Ok(_mapper.Map<IEnumerable<VenueReadDto>>(venues));
         }
 
+        /// <summary>
+        /// Get venue by id endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetVenueById")]
         public async Task<ActionResult<VenueReadDto>> GetVenueById(int id)
         {
@@ -52,9 +64,15 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// update venue endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="venueUpdateDto">name, phonenumber, address, city</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<ClientUpdateDto>> UpdateClient(int id, VenueUpdateDto venueUpdateDto)
+        public async Task<ActionResult<ClientUpdateDto>> UpdateVenue(int id, VenueUpdateDto venueUpdateDto)
         {
             //Get logged in user Id from JWT.
             string venueId = this.User.GetId();
@@ -84,6 +102,11 @@ namespace UserService.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete venue endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> DeleteVenue(int id)

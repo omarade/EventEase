@@ -13,11 +13,9 @@ namespace EventService.Models.Dtos
 
         public string Description { get; set; }
 
-        // [Required]
-        // public DateTime Time { get; set; }
+        public DateTime Time { get; set; }
 
-        // [Required]
-        // public string ImgPath { get; set; }
+        public string ImgPath { get; set; }
 
         public int TotalTickets { get; set; }
 

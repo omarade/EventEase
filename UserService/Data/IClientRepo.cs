@@ -6,7 +6,7 @@ namespace UserService.Data
     {
         Task<bool> SaveChanges();
 
-        Task<IEnumerable<Client>> GetAllClients();
+        Task<IEnumerable<Client>> GetAllClients(int pageSize, int pageNumber);
 
         Task<Client> GetClientById(int id);
 

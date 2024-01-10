@@ -22,9 +22,16 @@ namespace UserService.Data
         }
 
 
-        public async Task<IEnumerable<Venue>> GetAllVenues()
+        public async Task<IEnumerable<Venue>> GetAllVenues(int pageSize, int pageNumber)
         {
-            return await _context.Venues.ToListAsync();
+            if(pageSize > 20) {
+                pageSize = 20;
+            }
+
+            return await _context.Venues
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
         }
 
         public async Task<Venue> GetVenueById(int id)

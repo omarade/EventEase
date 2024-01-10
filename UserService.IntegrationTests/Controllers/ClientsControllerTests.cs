@@ -20,7 +20,7 @@ namespace UserService.IntegrationTests.Controllers
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             //Act
-            var response = await Client.GetFromJsonAsync<IEnumerable<ClientReadDto>>("/api/clients");
+            var response = await Client.GetFromJsonAsync<IEnumerable<ClientReadDto>>("/api/users/clients");
 
             //Assert
             response.Should().NotBeNullOrEmpty();
@@ -32,7 +32,7 @@ namespace UserService.IntegrationTests.Controllers
         public async Task GetClients_NoToken_ReturnsUnauthorized()
         {
             //Act
-            var response = await Client.GetAsync("/api/clients");
+            var response = await Client.GetAsync("/api/users/clients");
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
@@ -49,7 +49,7 @@ namespace UserService.IntegrationTests.Controllers
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             //Act
-            var response = await Client.GetAsync("/api/clients");
+            var response = await Client.GetAsync("/api/users/clients");
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
@@ -59,11 +59,11 @@ namespace UserService.IntegrationTests.Controllers
         public async Task GetClientById_AsOwner_ReturnsClient()
         {
             //Arrange
-            var token = new TestJwtToken().WithId("e0de8c02-79fd-48d0-8e99-fe3304b4995c").Build();
+            var token = new TestJwtToken().WithId("0c152da6-3443-4722-a561-719a562e8135").Build();
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);            
 
             //Act
-            var response = await Client.GetAsync("/api/clients/1");
+            var response = await Client.GetAsync("/api/users/clients/1");
 
             //Assert
             response.EnsureSuccessStatusCode();      
@@ -85,7 +85,7 @@ namespace UserService.IntegrationTests.Controllers
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             //Act
-            var response = await Client.GetAsync("/api/clients/1");
+            var response = await Client.GetAsync("/api/users/clients/1");
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
@@ -99,7 +99,7 @@ namespace UserService.IntegrationTests.Controllers
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             //Act
-            var response = await Client.GetAsync("/api/clients/3");
+            var response = await Client.GetAsync("/api/users/clients/3");
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -109,7 +109,7 @@ namespace UserService.IntegrationTests.Controllers
         public async Task UpdateClient_AsOwner_UpdatesClient()
         {
             //Arrange
-            var token = new TestJwtToken().WithId("e0de8c02-79fd-48d0-8e99-fe3304b4995c").Build();
+            var token = new TestJwtToken().WithId("0c152da6-3443-4722-a561-719a562e8135").Build();
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             using StringContent jsonContent = new(
@@ -121,13 +121,13 @@ namespace UserService.IntegrationTests.Controllers
                 "application/json");
 
             //Act
-            var response = await Client.PutAsync("/api/clients/1", jsonContent);
+            var response = await Client.PutAsync("/api/users/clients/1", jsonContent);
 
             //Assert
             response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
-            var getClient = await Client.GetAsync("/api/clients/1");
+            var getClient = await Client.GetAsync("/api/users/clients/1");
 
             getClient.EnsureSuccessStatusCode();
             getClient.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -156,7 +156,7 @@ namespace UserService.IntegrationTests.Controllers
                  "application/json");
 
             //Act
-            var response = await Client.PutAsync("/api/clients/1", jsonContent);
+            var response = await Client.PutAsync("/api/users/clients/1", jsonContent);
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);

@@ -30,17 +30,28 @@ namespace EventService.Controllers
             _publishEndpoint = publishEndpoint;
         }
 
+        /// <summary>
+        /// Get all events endpoint for event service
+        /// </summary>
+        /// <param name="pageSize">page size</param>
+        /// <param name="pageNumber">page number</param>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult<IEnumerable<EventReadDto>>> GetAllEvents()
+        public async Task<ActionResult<IEnumerable<EventReadDto>>> GetAllEvents(int pageSize = 20, int pageNumber = 1)
         {
             Console.WriteLine("---> Getting Events....");
 
-            var events = await _eventRepo.GetAllEvents();
+            var events = await _eventRepo.GetAllEvents(pageSize, pageNumber);
 
             return Ok(_mapper.Map<IEnumerable<EventReadDto>>(events));
         }
-
+        
+        /// <summary>
+        /// Get event by id endpoint for event service
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetEventById")]
         public async Task<ActionResult<EventReadDto>> GetEventById(int id)
         {
@@ -48,9 +59,19 @@ namespace EventService.Controllers
 
             var ev = await _eventRepo.GetEventById(id);
 
+            if (ev is null)
+            {
+                return NotFound("----> Event was not found");
+            }
+
             return Ok(_mapper.Map<EventReadDto>(ev));
         }
 
+        /// <summary>
+        /// Create event for search service
+        /// </summary>
+        /// <param name="eventCreateDto">name</param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Venue")]
         public async Task<ActionResult<EventReadDto>> CreateEvent(EventCreateDto eventCreateDto)
@@ -96,6 +117,12 @@ namespace EventService.Controllers
             return BadRequest("Invalid request payload");
         }
 
+        /// <summary>
+        /// Update event for search service
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="eventUpdateDto">name, type, artist</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Venue")]
         public async Task<ActionResult<EventUpdateDto>> UpdateEvent(int id, EventUpdateDto eventUpdateDto)
@@ -135,6 +162,11 @@ namespace EventService.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete event for search service
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Venue")]
         public async Task<ActionResult> DeleteEvent(int id)
@@ -167,7 +199,13 @@ namespace EventService.Controllers
 
             return Ok();
         }
-
+        
+        /// <summary>
+        /// reserve ticket for an event endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="clientEventCreateDto">ticketsNum</param>
+        /// <returns></returns>
         [HttpPost("{id}/reserve-ticket")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Client")]
         public async Task<ActionResult> ReserveTicket(int id, ClientEventCreateDto clientEventCreateDto)

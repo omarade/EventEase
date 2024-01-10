@@ -1,5 +1,6 @@
-M
-DE:\Work\Repos\EventEase\UserService\Consumers\UserCreatedConsumer.csutf-8M
+O
+FE:\Work\Repos\EventEase\UserService\Consumers\ClientCreatedConsumer.csutf-8N
+EE:\Work\Repos\EventEase\UserService\Consumers\VenueCreatedConsumer.csutf-8M
 DE:\Work\Repos\EventEase\UserService\Controllers\ClientsController.csutf-8L
 CE:\Work\Repos\EventEase\UserService\Controllers\VenuesController.csutf-8A
 8E:\Work\Repos\EventEase\UserService\Data\AppDbContext.csutf-8?
@@ -7,9 +8,7 @@ CE:\Work\Repos\EventEase\UserService\Controllers\VenuesController.csutf-8A
 7E:\Work\Repos\EventEase\UserService\Data\IClientRepo.csutf-8?
 6E:\Work\Repos\EventEase\UserService\Data\IVenueRepo.csutf-8;
 2E:\Work\Repos\EventEase\UserService\Data\PrepDb.csutf-8>
-5E:\Work\Repos\EventEase\UserService\Data\VenueRepo.csutf-8B
-9E:\Work\Repos\EventEase\UserService\Events\UserCreated.csutf-8B
-9E:\Work\Repos\EventEase\UserService\Events\UserDeleted.csutf-8T
+5E:\Work\Repos\EventEase\UserService\Data\VenueRepo.csutf-8T
 KE:\Work\Repos\EventEase\UserService\Extensions\ClaimsPrincipleExtensions.csutf-8=
 4E:\Work\Repos\EventEase\UserService\Models\Client.csutf-8I
 @E:\Work\Repos\EventEase\UserService\Models\Dtos\ClientReadDto.csutf-8K

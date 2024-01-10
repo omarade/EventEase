@@ -1,4 +1,5 @@
-﻿E:\Work\Repos\EventEase\UserService\Consumers\UserCreatedConsumer.cs
+﻿E:\Work\Repos\EventEase\UserService\Consumers\ClientCreatedConsumer.cs
+E:\Work\Repos\EventEase\UserService\Consumers\VenueCreatedConsumer.cs
 E:\Work\Repos\EventEase\UserService\Controllers\ClientsController.cs
 E:\Work\Repos\EventEase\UserService\Controllers\VenuesController.cs
 E:\Work\Repos\EventEase\UserService\Data\AppDbContext.cs
@@ -7,8 +8,6 @@ E:\Work\Repos\EventEase\UserService\Data\IClientRepo.cs
 E:\Work\Repos\EventEase\UserService\Data\IVenueRepo.cs
 E:\Work\Repos\EventEase\UserService\Data\PrepDb.cs
 E:\Work\Repos\EventEase\UserService\Data\VenueRepo.cs
-E:\Work\Repos\EventEase\UserService\Events\UserCreated.cs
-E:\Work\Repos\EventEase\UserService\Events\UserDeleted.cs
 E:\Work\Repos\EventEase\UserService\Extensions\ClaimsPrincipleExtensions.cs
 E:\Work\Repos\EventEase\UserService\Models\Client.cs
 E:\Work\Repos\EventEase\UserService\Models\Dtos\ClientReadDto.cs

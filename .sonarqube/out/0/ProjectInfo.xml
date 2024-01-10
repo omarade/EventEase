@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <ProjectName>MessageBusEvents</ProjectName>
+  <ProjectName>EventService</ProjectName>
   <ProjectLanguage>C#</ProjectLanguage>
   <ProjectType>Product</ProjectType>
-  <ProjectGuid>c9e565b6-90a0-4581-8687-5a4e47eedee0</ProjectGuid>
-  <FullPath>E:\Work\Repos\EventEase\MessageBusEvents\MessageBusEvents.csproj</FullPath>
+  <ProjectGuid>fa12d758-4c85-42ba-b342-d33b58e11a12</ProjectGuid>
+  <FullPath>E:\Work\Repos\EventEase\EventService\EventService.csproj</FullPath>
   <IsExcluded>false</IsExcluded>
   <AnalysisResults>
     <AnalysisResult Id="FilesToAnalyze" Location="E:\Work\Repos\EventEase\.sonarqube\conf\0\FilesToAnalyze.txt" />

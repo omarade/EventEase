@@ -23,7 +23,7 @@ namespace UserService.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetClients_Returns_Correct_Numbers_Of_CLients()
+        public async Task GetClients_Returns_Correct_Numbers_Of_CLients()
         {
             //Arrange
             int count = 5;
@@ -31,13 +31,13 @@ namespace UserService.UnitTests.Controllers
             var fakeClients = A.CollectionOfDummy<Client>(count).AsEnumerable();
             var fakeClientsDtos = A.CollectionOfDummy<ClientReadDto>(count).AsEnumerable();
 
-            A.CallTo(() => _clientRepo.GetAllClients()).Returns(fakeClients);
+            A.CallTo(() => _clientRepo.GetAllClients(20,1)).Returns(fakeClients);
             A.CallTo(() => _mapper.Map<IEnumerable<ClientReadDto>>(fakeClients)).Returns(fakeClientsDtos);
 
             var clientsController = new ClientsController(_clientRepo, _mapper, _publishEndpoint);
 
             //Act
-            var actionResult = clientsController.GetClients();
+            var actionResult = await clientsController.GetClients();
 
             //Assert
             var result = actionResult.Result as OkObjectResult;

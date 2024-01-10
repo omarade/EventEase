@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/events/[controller]")]
     [ApiController]
     public class VenuesController: Controller
     {
@@ -18,6 +18,11 @@ namespace EventService.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get venue by id endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetVenueById")]
         public async Task<ActionResult<VenueReadDto>> GetVenueById(int id)
         {

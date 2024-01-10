@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/events/[controller]")]
     [ApiController]
     public class ClientsController: Controller
     {
@@ -21,8 +21,13 @@ namespace EventService.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get client by id endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetClientById")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]
         public async Task<ActionResult<ClientReadDto>> GetClientById(int id)
         {
             Console.WriteLine("---> Getting Client with id: " + id);

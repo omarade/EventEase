@@ -74,20 +74,18 @@ namespace AuthService.Controllers
             return BadRequest("Invalid request payload");
         }
 
+
+        /// <summary>
+        /// Register endpoint for auth
+        /// </summary>
+        /// <param name="registerDto">name, username, password and role</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto registerDto)
         {
             if(ModelState.IsValid)
             {
-                //check if email exists in db
-                var emailExists = await _userManager.FindByEmailAsync(registerDto.Email);
-
-                if(emailExists != null)
-                {
-                    return BadRequest("Provided email already has an account");
-                }
-
                 var user = new IdentityUser()
                 {
                     Email = registerDto.Email,

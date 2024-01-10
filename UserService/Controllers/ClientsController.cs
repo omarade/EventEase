@@ -11,7 +11,7 @@ using UserService.Models.Dtos;
 
 namespace UserService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users/[controller]")]
     [ApiController]
     public class ClientsController : ControllerBase
     {       
@@ -27,18 +27,28 @@ namespace UserService.Controllers
             _publishEndpoint = publishEndpoint;
         }
 
-
+        /// <summary>
+        /// Get clients endpoint for user service
+        /// </summary>
+        /// <param name="pageSize">page size</param>
+        /// <param name="pageNumber">page number</param>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult<IEnumerable<ClientReadDto>>> GetClients()
+        public async Task<ActionResult<IEnumerable<ClientReadDto>>> GetClients(int pageSize = 20, int pageNumber = 1)
         {
             Console.WriteLine("---> Getting Clients....");
 
-            var clients = await _clientRepo.GetAllClients();
+            var clients = await _clientRepo.GetAllClients(pageSize, pageNumber);
 
             return Ok(_mapper.Map<IEnumerable<ClientReadDto>>(clients));
         }
-        
+
+        /// <summary>
+        /// Get client by id endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetClientById")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<ClientReadDto>> GetClientById(int id)
@@ -65,6 +75,11 @@ namespace UserService.Controllers
             }
         }
 
+        /// <summary>
+        /// Get client by email endpoint
+        /// </summary>
+        /// <param name="email">email</param>
+        /// <returns></returns>
         [HttpGet("GetClientByEmail", Name = "GetClientByEmail")]
         public async Task<ActionResult<ClientReadDto>> GetClientByEmail(string email)
         {
@@ -90,10 +105,16 @@ namespace UserService.Controllers
             }
         }
 
-       [HttpPut("{id}")]
-       [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-       public async Task<ActionResult<ClientUpdateDto>> UpdateClient(int id, ClientUpdateDto clientUpdateDto)
-       {
+        /// <summary>
+        /// Update client endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="clientUpdateDto">name</param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<ClientUpdateDto>> UpdateClient(int id, ClientUpdateDto clientUpdateDto)
+        {
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
@@ -122,12 +143,17 @@ namespace UserService.Controllers
             }
 
             return NoContent();
-       }
+        }
 
-       [HttpDelete("{id}")]
-       [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-       public async Task<ActionResult> DeleteClient(int id)
-       {
+        /// <summary>
+        /// Delete client endpoint
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> DeleteClient(int id)
+        {
             //Get logged in user Id from JWT.
             string clientId = this.User.GetId();
 
@@ -153,6 +179,6 @@ namespace UserService.Controllers
             }
             
             return Ok();
-       }
+        }
     }
 }

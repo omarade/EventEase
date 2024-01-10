@@ -9,14 +9,14 @@ namespace AuthService.Controllers
 {
     [ApiController]
     [Route("api/auth/[controller]")]
-    public class RoleController : ControllerBase
+    public class RolesController : ControllerBase
     {
         private readonly AppDbContext _apiDbContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ILogger<RoleController> _logger;
+        private readonly ILogger<RolesController> _logger;
 
-        public RoleController(AppDbContext apiDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<RoleController> logger)
+        public RolesController(AppDbContext apiDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<RolesController> logger)
         {
             _apiDbContext = apiDbContext;
             _userManager = userManager;
@@ -24,6 +24,10 @@ namespace AuthService.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get all roles endpoint for auth
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAllRoles()
         {
@@ -31,6 +35,11 @@ namespace AuthService.Controllers
             return Ok(roles);
         }
 
+        /// <summary>
+        /// Creare role endpoint for auth
+        /// </summary>
+        /// <param name="roleCreateDto">name</param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<IActionResult> CreateRole(RoleCreateDto roleCreateDto)
@@ -55,6 +64,11 @@ namespace AuthService.Controllers
             return BadRequest($"New Role Type '{roleCreateDto.Name}' has not been created");        
         }
 
+        /// <summary>
+        /// Assige role to user endpoint
+        /// </summary>
+        /// <param name="userRoleDto">email, role</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AssignRoleToUser")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
@@ -90,6 +104,11 @@ namespace AuthService.Controllers
             return BadRequest($"Failed to assign new role to user with email: '{user.Email}'"); 
         }
 
+        /// <summary>
+        /// Get user role endpoint
+        /// </summary>
+        /// <param name="email">email</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetUserRoles")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
@@ -110,6 +129,11 @@ namespace AuthService.Controllers
             return Ok(roles);
         }
 
+        /// <summary>
+        /// Unassign user role endpoint
+        /// </summary>
+        /// <param name="userRoleDto">email, role</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("UnassignUserRole")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]

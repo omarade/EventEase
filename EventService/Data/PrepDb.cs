@@ -55,7 +55,7 @@ namespace EventService.Data
                 // Add client
                 Console.WriteLine("---> Adding Clients");
                 context.Clients.AddRange(
-                    new Client() {ExternalId="e0de8c02-79fd-48d0-8e99-fe3304b4995c", Name="Logan Tate", Email="client@gmail.com"}
+                    new Client() {ExternalId="0c152da6-3443-4722-a561-719a562e8135", Name="Logan Tate", Email="client@gmail.com"}
                 );
 
                 // Reserve ticket

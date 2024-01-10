@@ -22,11 +22,17 @@ namespace EventService.Data
             _context.Events.Add(createdEvent);
         }
 
-        public async Task<IEnumerable<Event>> GetAllEvents()
+        public async Task<IEnumerable<Event>> GetAllEvents(int pageSize, int pageNumber)
         {
+            if(pageSize > 20) {
+                pageSize = 20;
+            }
+            
             return await _context.Events
                 .Include(e => e.Venue)
                 .Include(e => e.Clients)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
         }
 

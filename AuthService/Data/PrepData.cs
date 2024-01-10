@@ -61,7 +61,7 @@ namespace AuthService.Data
                 // 2. Venue
                 var venue = new IdentityUser()
                 {
-                    // Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995a",
+                    Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995a",
                     Email = "venue@gmail.com",
                     UserName = "venue@gmail.com"
                 };
@@ -71,7 +71,7 @@ namespace AuthService.Data
                 // 3. Client
                 var client = new IdentityUser()
                 {
-                    // Id = "e0de8c02-79fd-48d0-8e99-fe3304b4995c",
+                    Id = "0c152da6-3443-4722-a561-719a562e8135",
                     Email = "client@gmail.com",
                     UserName = "client@gmail.com"
                 };

@@ -22,9 +22,16 @@ namespace UserService.Data
             _context.Clients.AddAsync(client);
         }
 
-        public async Task<IEnumerable<Client>> GetAllClients()
+        public async Task<IEnumerable<Client>> GetAllClients(int pageSize, int pageNumber)
         {
-            return await _context.Clients.ToListAsync();
+            if(pageSize > 20) {
+                pageSize = 20;
+            }
+
+            return await _context.Clients
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
         }
 
         public async Task<Client> GetClientById(int id)

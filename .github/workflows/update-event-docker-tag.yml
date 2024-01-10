@@ -1,8 +1,8 @@
-name: Update User Docker image tag in configuration repo
+name: Update Event Docker image tag in configuration repo
 
 on:
   workflow_run:
-    workflows: ["UserService Docker Deploy"]
+    workflows: ["EventService Docker Deploy"]
     branches: main
     types:
       - completed
@@ -21,16 +21,16 @@ jobs:
           repository: 'omarade/EventEase-IAC'  
           token: ${{ secrets.GH_TOKEN }} 
 
-      - name: Update User yaml file in place
+      - name: Update Event yaml file in place
         # You may pin to the exact commit or the version.
         uses: loveholidays/gitops-action-yaml-updater@v1.0.0
         with:
           # TYPE of the new value to be updated
           mode: IMAGE_TAG
           # Name of the container
-          container-name: userservice
+          container-name: eventservice
           # Path to the yaml file
-          filepath: K8S/user-depl.yaml
+          filepath: K8S/event-depl.yaml
           # Tag value for the new image
           new-image-tag: ${{ github.sha }}
 
@@ -41,7 +41,7 @@ jobs:
           # Arguments for the git add command
           add: "*"
           # The message for the commit
-          message: Update userservice docker image version
+          message: Update eventservice docker image version
           # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (more info in the README)
           push: true
           # The token used to make requests to the GitHub API. It's NOT used to make commits and should not be changed.

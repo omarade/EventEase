@@ -5,517 +5,12 @@
     {
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
-        "version": "4.7.0.0",
-        "fileVersion": "4.7.0-3.23517.17 (9d4cc030)",
-        "semanticVersion": "4.7.0",
+        "version": "4.8.0.0",
+        "fileVersion": "4.8.0-3.23524.11 (f43cd10b)",
+        "semanticVersion": "4.8.0",
         "language": "en-US"
       },
       "results": [
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 28
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 28
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Role' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
-                "region": {
-                  "startLine": 6,
-                  "startColumn": 23,
-                  "endLine": 6,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
-                "region": {
-                  "startLine": 6,
-                  "startColumn": 23,
-                  "endLine": 6,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Id' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserDeleted.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 25
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserDeleted.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 25
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Id' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 25
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 25
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Name' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 6,
-                  "startColumn": 23,
-                  "endLine": 6,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 6,
-                  "startColumn": 23,
-                  "endLine": 6,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 7,
-                  "startColumn": 23,
-                  "endLine": 7,
-                  "endColumn": 28
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 7,
-                  "startColumn": 23,
-                  "endLine": 7,
-                  "endColumn": 28
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Role' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 23,
-                  "endLine": 8,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Events/UserCreated.cs",
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 23,
-                  "endLine": 8,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Name' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/RoleCreateDto.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/RoleCreateDto.cs",
-                "region": {
-                  "startLine": 5,
-                  "startColumn": 23,
-                  "endLine": 5,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Name' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 23,
-                  "endLine": 8,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 23,
-                  "endLine": 8,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 23,
-                  "endLine": 11,
-                  "endColumn": 28
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 23,
-                  "endLine": 11,
-                  "endColumn": 28
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Password' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 14,
-                  "startColumn": 23,
-                  "endLine": 14,
-                  "endColumn": 31
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 14,
-                  "startColumn": 23,
-                  "endLine": 14,
-                  "endColumn": 31
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Role' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 17,
-                  "startColumn": 23,
-                  "endLine": 17,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
-                "region": {
-                  "startLine": 17,
-                  "startColumn": 23,
-                  "endLine": 17,
-                  "endColumn": 27
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8618",
-          "level": "warning",
-          "message": "Non-nullable property 'Errors' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/AuthResult.cs",
-                "region": {
-                  "startLine": 9,
-                  "startColumn": 29,
-                  "endLine": 9,
-                  "endColumn": 35
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/AuthResult.cs",
-                "region": {
-                  "startLine": 9,
-                  "startColumn": 29,
-                  "endLine": 9,
-                  "endColumn": 35
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 'user' in 'Task<IdentityResult> UserManager<IdentityUser>.DeleteAsync(IdentityUser user)'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/UserDeletedConsumer.cs",
-                "region": {
-                  "startLine": 31,
-                  "startColumn": 60,
-                  "endLine": 31,
-                  "endColumn": 69
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 's' in 'byte[] Encoding.GetBytes(string s)'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Program.cs",
-                "region": {
-                  "startLine": 64,
-                  "startColumn": 43,
-                  "endLine": 64,
-                  "endColumn": 101
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 'value' in 'Claim.Claim(string type, string value)'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Helpers/JWTHelper.cs",
-                "region": {
-                  "startLine": 43,
-                  "startColumn": 56,
-                  "endLine": 43,
-                  "endColumn": 66
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
         {
           "ruleId": "CS1998",
           "level": "warning",
@@ -538,24 +33,948 @@
           }
         },
         {
-          "ruleId": "S125",
+          "ruleId": "CS1591",
           "level": "warning",
-          "message": "Remove this commented out code.",
+          "message": "Missing XML comment for publicly visible type or member 'JwtConfig'",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/UserDeletedConsumer.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Configurations/JwtConfig.cs",
                 "region": {
-                  "startLine": 29,
-                  "startColumn": 13,
-                  "endLine": 29,
-                  "endColumn": 71
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 27
                 }
               }
             }
           ],
           "properties": {
-            "warningLevel": 1
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'JwtConfig.Secret'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Configurations/JwtConfig.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 23,
+                  "endLine": 5,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'ClientDeletedConsumer'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/ClientDeletedConsumer.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 18,
+                  "endLine": 7,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'ClientDeletedConsumer.ClientDeletedConsumer(ILogger<ClientDeleted>, UserManager<IdentityUser>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/ClientDeletedConsumer.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 16,
+                  "endLine": 12,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'ClientDeletedConsumer.Consume(ConsumeContext<ClientDeleted>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/ClientDeletedConsumer.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 27,
+                  "endLine": 18,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'VenueDeletedConsumer'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/VenueDeletedConsumer.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 18,
+                  "endLine": 8,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'VenueDeletedConsumer.VenueDeletedConsumer(ILogger<VenueDeleted>, UserManager<IdentityUser>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/VenueDeletedConsumer.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 16,
+                  "endLine": 13,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'VenueDeletedConsumer.Consume(ConsumeContext<VenueDeleted>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/VenueDeletedConsumer.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 27,
+                  "endLine": 19,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthController'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 18,
+                  "endLine": 15,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthController.AuthController(ILogger<AuthController>, UserManager<IdentityUser>, RoleManager<IdentityRole>, IOptionsMonitor<JwtConfig>, IMapper, IPublishEndpoint)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 16,
+                  "endLine": 24,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthController.Register(UserRegisterDto)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
+                "region": {
+                  "startLine": 79,
+                  "startColumn": 42,
+                  "endLine": 79,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 18,
+                  "endLine": 12,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController.RolesController(AppDbContext, UserManager<IdentityUser>, RoleManager<IdentityRole>, ILogger<RolesController>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 16,
+                  "endLine": 19,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController.GetAllRoles()'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 30,
+                  "endLine": 28,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController.CreateRole(RoleCreateDto)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 42,
+                  "endLine": 36,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController.AssignRoleToUser(UserRoleDto)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 42,
+                  "endLine": 61,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController.GetUserRoles(string)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 42,
+                  "endLine": 96,
+                  "endColumn": 54
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RolesController.UnassignUserRole(UserRoleDto)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 116,
+                  "startColumn": 42,
+                  "endLine": 116,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AppDbContext'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/AppDbContext.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 18,
+                  "endLine": 6,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AppDbContext.AppDbContext(DbContextOptions<AppDbContext>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/AppDbContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 16,
+                  "endLine": 8,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'PrepData'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 18,
+                  "endLine": 7,
+                  "endColumn": 26
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'PrepData.PrepPopulation(IApplicationBuilder, bool)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 34,
+                  "endLine": 9,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthResult'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/AuthResult.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthResult.Token'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/AuthResult.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 23,
+                  "endLine": 5,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthResult.Result'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/AuthResult.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 24,
+                  "endLine": 7,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthResult.Errors'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/AuthResult.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 29,
+                  "endLine": 9,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'LoginDto'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/LoginDto.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 18,
+                  "endLine": 5,
+                  "endColumn": 26
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'LoginDto.Email'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/LoginDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 23,
+                  "endLine": 8,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'LoginDto.Password'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/LoginDto.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 23,
+                  "endLine": 10,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RoleCreateDto'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/RoleCreateDto.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'RoleCreateDto.Name'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/RoleCreateDto.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 23,
+                  "endLine": 5,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserLoginResDto'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserLoginResDto.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRegisterDto'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 18,
+                  "endLine": 5,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRegisterDto.Name'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 23,
+                  "endLine": 8,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRegisterDto.Email'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 23,
+                  "endLine": 12,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRegisterDto.Password'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 23,
+                  "endLine": 15,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRegisterDto.Role'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterDto.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 23,
+                  "endLine": 18,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRegisterResDto'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterResDto.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRoleDto'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRoleDto.Email'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 23,
+                  "endLine": 5,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'UserRoleDto.Role'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRoleDto.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 23,
+                  "endLine": 6,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'JWTHelper'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Helpers/JWTHelper.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'JWTHelper.GenerateJwtToken(IdentityUser, JwtConfig, IList<Claim>, IList<string>)'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Helpers/JWTHelper.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 42,
+                  "endLine": 12,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthProfile'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Profiles/AuthProfile.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 18,
+                  "endLine": 7,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CS1591",
+          "level": "warning",
+          "message": "Missing XML comment for publicly visible type or member 'AuthProfile.AuthProfile()'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Profiles/AuthProfile.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 16,
+                  "endLine": 9,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
           }
         },
         {
@@ -567,9 +986,9 @@
               "resultFile": {
                 "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
                 "region": {
-                  "startLine": 113,
+                  "startLine": 110,
                   "startColumn": 21,
-                  "endLine": 113,
+                  "endLine": 110,
                   "endColumn": 72
                 }
               }
@@ -586,12 +1005,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Program.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
                 "region": {
-                  "startLine": 24,
-                  "startColumn": 1,
-                  "endLine": 24,
-                  "endColumn": 28
+                  "startLine": 20,
+                  "startColumn": 13,
+                  "endLine": 20,
+                  "endColumn": 74
                 }
               }
             }
@@ -609,10 +1028,115 @@
               "resultFile": {
                 "uri": "file:///E:/Work/Repos/EventEase/AuthService/Program.cs",
                 "region": {
-                  "startLine": 35,
-                  "startColumn": 9,
-                  "endLine": 35,
-                  "endColumn": 39
+                  "startLine": 59,
+                  "startColumn": 5,
+                  "endLine": 59,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S4487",
+          "level": "warning",
+          "message": "Remove this unread private field '_mapper' or refactor the code to use its value.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 34,
+                  "endLine": 20,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S4487",
+          "level": "warning",
+          "message": "Remove this unread private field '_apiDbContext' or refactor the code to use its value.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 39,
+                  "endLine": 14,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1118",
+          "level": "warning",
+          "message": "Add a 'protected' constructor or the 'static' keyword to the class declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 18,
+                  "endLine": 7,
+                  "endColumn": 26
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2094",
+          "level": "warning",
+          "message": "Remove this empty class, write its code or make it an \"interface\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserLoginResDto.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2094",
+          "level": "warning",
+          "message": "Remove this empty class, write its code or make it an \"interface\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterResDto.cs",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 18,
+                  "endLine": 3,
+                  "endColumn": 36
                 }
               }
             }
@@ -664,38 +1188,17 @@
           }
         },
         {
-          "ruleId": "S2094",
+          "ruleId": "S3168",
           "level": "warning",
-          "message": "Remove this empty class, write its code or make it an \"interface\".",
+          "message": "Return 'Task' instead.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserRegisterResDto.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
                 "region": {
-                  "startLine": 3,
-                  "startColumn": 18,
-                  "endLine": 3,
-                  "endColumn": 36
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S2094",
-          "level": "warning",
-          "message": "Remove this empty class, write its code or make it an \"interface\".",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Dtos/UserLoginResDto.cs",
-                "region": {
-                  "startLine": 3,
-                  "startColumn": 18,
-                  "endLine": 3,
+                  "startLine": 9,
+                  "startColumn": 29,
+                  "endLine": 9,
                   "endColumn": 33
                 }
               }
@@ -706,81 +1209,18 @@
           }
         },
         {
-          "ruleId": "S4487",
-          "level": "warning",
-          "message": "Remove this unread private field '_mapper' or refactor the code to use its value.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/UserDeletedConsumer.cs",
-                "region": {
-                  "startLine": 13,
-                  "startColumn": 34,
-                  "endLine": 13,
-                  "endColumn": 41
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S4487",
-          "level": "warning",
-          "message": "Remove this unread private field '_apiDbContext' or refactor the code to use its value.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
-                "region": {
-                  "startLine": 14,
-                  "startColumn": 39,
-                  "endLine": 14,
-                  "endColumn": 52
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S4487",
-          "level": "warning",
-          "message": "Remove this unread private field '_mapper' or refactor the code to use its value.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
-                "region": {
-                  "startLine": 20,
-                  "startColumn": 34,
-                  "endLine": 20,
-                  "endColumn": 41
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "CA2254",
           "level": "note",
           "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/UserDeletedConsumer.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/ClientDeletedConsumer.cs",
                 "region": {
-                  "startLine": 26,
+                  "startLine": 22,
                   "startColumn": 36,
-                  "endLine": 26,
-                  "endColumn": 77
+                  "endLine": 22,
+                  "endColumn": 79
                 }
               }
             }
@@ -796,7 +1236,70 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Consumers/VenueDeletedConsumer.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 36,
+                  "endLine": 23,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 29,
+                  "endLine": 88,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 93,
+                  "startColumn": 29,
+                  "endLine": 93,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
                 "region": {
                   "startLine": 51,
                   "startColumn": 40,
@@ -817,12 +1320,54 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
                 "region": {
                   "startLine": 54,
                   "startColumn": 36,
                   "endLine": 54,
                   "endColumn": 96
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Use 'Count' property here instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 29,
+                  "endLine": 88,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Use 'Count' property here instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 93,
+                  "startColumn": 29,
+                  "endLine": 93,
+                  "endColumn": 34
                 }
               }
             }
@@ -838,12 +1383,186 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
                 "region": {
                   "startLine": 103,
                   "startColumn": 40,
                   "endLine": 103,
                   "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 122,
+                  "startColumn": 40,
+                  "endLine": 122,
+                  "endColumn": 95
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 129,
+                  "startColumn": 40,
+                  "endLine": 129,
+                  "endColumn": 88
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1829",
+          "level": "note",
+          "message": "Use the \"Count\" property instead of Enumerable.Count()",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 17,
+                  "endLine": 88,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "PropertyNameKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1829",
+          "level": "note",
+          "message": "Use the \"Count\" property instead of Enumerable.Count()",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Data/PrepData.cs",
+                "region": {
+                  "startLine": 93,
+                  "startColumn": 17,
+                  "endLine": 93,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "PropertyNameKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 67,
+                  "startColumn": 40,
+                  "endLine": 67,
+                  "endColumn": 95
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 75,
+                  "startColumn": 40,
+                  "endLine": 75,
+                  "endColumn": 88
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 40,
+                  "endLine": 85,
+                  "endColumn": 117
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RolesController.cs",
+                "region": {
+                  "startLine": 89,
+                  "startColumn": 36,
+                  "endLine": 89,
+                  "endColumn": 99
                 }
               }
             }
@@ -880,117 +1599,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
+                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
                 "region": {
-                  "startLine": 122,
-                  "startColumn": 40,
-                  "endLine": 122,
-                  "endColumn": 95
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CA2254",
-          "level": "note",
-          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
-                "region": {
-                  "startLine": 129,
-                  "startColumn": 40,
-                  "endLine": 129,
-                  "endColumn": 88
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CA2254",
-          "level": "note",
-          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
-                "region": {
-                  "startLine": 67,
-                  "startColumn": 40,
-                  "endLine": 67,
-                  "endColumn": 95
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CA2254",
-          "level": "note",
-          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
-                "region": {
-                  "startLine": 75,
-                  "startColumn": 40,
-                  "endLine": 75,
-                  "endColumn": 88
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CA2254",
-          "level": "note",
-          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
-                "region": {
-                  "startLine": 85,
-                  "startColumn": 40,
-                  "endLine": 85,
-                  "endColumn": 117
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CA2254",
-          "level": "note",
-          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/RoleController.cs",
-                "region": {
-                  "startLine": 89,
-                  "startColumn": 36,
-                  "endLine": 89,
-                  "endColumn": 99
+                  "startLine": 93,
+                  "startColumn": 44,
+                  "endLine": 93,
+                  "endColumn": 92
                 }
               }
             }
@@ -1008,30 +1622,9 @@
               "resultFile": {
                 "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
                 "region": {
-                  "startLine": 100,
+                  "startLine": 106,
                   "startColumn": 48,
-                  "endLine": 100,
-                  "endColumn": 96
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CA2254",
-          "level": "note",
-          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///E:/Work/Repos/EventEase/AuthService/Controllers/AuthController.cs",
-                "region": {
-                  "startLine": 109,
-                  "startColumn": 48,
-                  "endLine": 109,
+                  "endLine": 106,
                   "endColumn": 125
                 }
               }
@@ -1043,6 +1636,21 @@
         }
       ],
       "rules": {
+        "CA1829": {
+          "id": "CA1829",
+          "shortDescription": "Use Length/Count property instead of Count() when available",
+          "fullDescription": "Enumerable.Count() potentially enumerates the sequence while a Length/Count property is a direct access.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1829",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
         "CA2254": {
           "id": "CA2254",
           "shortDescription": "Template should be a static expression",
@@ -1058,39 +1666,26 @@
             ]
           }
         },
+        "CS1591": {
+          "id": "CS1591",
+          "shortDescription": "Missing XML comment for publicly visible type or member",
+          "fullDescription": "The /doc compiler option was specified, but one or more constructs did not have comments.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1591)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
         "CS1998": {
           "id": "CS1998",
           "shortDescription": "Async method lacks 'await' operators and will run synchronously",
           "defaultLevel": "warning",
           "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1998)",
-          "properties": {
-            "category": "Compiler",
-            "isEnabledByDefault": true,
-            "tags": [
-              "Compiler",
-              "Telemetry"
-            ]
-          }
-        },
-        "CS8604": {
-          "id": "CS8604",
-          "shortDescription": "Possible null reference argument.",
-          "defaultLevel": "warning",
-          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8604)",
-          "properties": {
-            "category": "Compiler",
-            "isEnabledByDefault": true,
-            "tags": [
-              "Compiler",
-              "Telemetry"
-            ]
-          }
-        },
-        "CS8618": {
-          "id": "CS8618",
-          "shortDescription": "Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.",
-          "defaultLevel": "warning",
-          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
           "properties": {
             "category": "Compiler",
             "isEnabledByDefault": true,
@@ -1125,6 +1720,23 @@
           "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1118",
           "properties": {
             "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S1155": {
+          "id": "S1155",
+          "shortDescription": "\"Any()\" should be used to test for emptiness",
+          "fullDescription": "When you call Any(), it clearly communicates the code’s intention, which is to check if the collection is empty. Using Count() == 0 for this purpose is less direct and makes the code slightly more complex. However, there are some cases where special attention should be paid:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1155",
+          "properties": {
+            "category": "Minor Code Smell",
             "isEnabledByDefault": true,
             "tags": [
               "C#",
@@ -1176,6 +1788,40 @@
           "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2094",
           "properties": {
             "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2971": {
+          "id": "S2971",
+          "shortDescription": "LINQ expressions should be simplified",
+          "fullDescription": "In the interests of readability, code that can be simplified should be simplified. To that end, there are several ways IEnumerable language integrated queries (LINQ) can be simplified. This not only improves readabilty but can also lead to improved performance.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2971",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3168": {
+          "id": "S3168",
+          "shortDescription": "\"async\" methods should not return \"void\"",
+          "fullDescription": "An async method with a void return type does not follow the task asynchronous programming (TAP) model since the return type should be Task or Task<TResult>",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3168",
+          "properties": {
+            "category": "Major Bug",
             "isEnabledByDefault": true,
             "tags": [
               "C#",

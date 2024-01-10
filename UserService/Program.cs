@@ -77,6 +77,20 @@ public class Program
         builder.Services.AddScoped<IClientRepo, ClientRepo>();
         builder.Services.AddScoped<IVenueRepo, VenueRepo>();
 
+        //CORS
+        var allowedSpecificOrigins = "_allowedSpecificOrigins";
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: allowedSpecificOrigins,
+                policy  =>
+                {
+                    policy.WithOrigins("http://localhost:80",
+                                        "http://localhost:4200");
+                }
+            );
+        });
+
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -101,8 +115,10 @@ public class Program
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    RequireExpirationTime = false,
-                    ValidateLifetime = true
+                    //Expiration date
+                    RequireExpirationTime = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero 
                 };
             });
 
@@ -120,6 +136,8 @@ public class Program
         PrepDb.PrepPopulation(app, app.Environment.IsProduction());
 
         app.UseHttpsRedirection();
+
+        app.UseCors(allowedSpecificOrigins);
 
         app.UseAuthorization();
 

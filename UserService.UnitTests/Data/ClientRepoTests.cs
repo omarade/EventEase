@@ -23,7 +23,7 @@ namespace UserService.UnitTests.Data
         }
 
         [Fact]
-        public void GetClients_Returns_Correct_Numbers_Of_CLients()
+        public async Task GetClients_Returns_Correct_Numbers_Of_CLients()
         {
             //Arrange
             var clients = new List<Client>
@@ -38,7 +38,7 @@ namespace UserService.UnitTests.Data
             var clientRepo = new ClientRepo(_context);
 
             //Act
-            var result = clientRepo.GetAllClients();
+            var result = await clientRepo.GetAllClients(20, 1);
 
             //Assert
             Assert.Multiple(
@@ -49,7 +49,7 @@ namespace UserService.UnitTests.Data
         }
 
         [Fact]
-        public void GetClientById_Returns_Correct_Client()
+        public async Task GetClientById_Returns_Correct_Client()
         {
             //Arrange
             var clients = new List<Client>
@@ -59,12 +59,12 @@ namespace UserService.UnitTests.Data
             };
 
             _context.Clients.AddRange(clients);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             var clientRepo = new ClientRepo(_context);
 
             //Act
-            var result = clientRepo.GetClientById(1);
+            var result = await clientRepo.GetClientById(1);
 
             //Assert
             Assert.Multiple(
