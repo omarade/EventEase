@@ -68,6 +68,41 @@ else
 }
 
 // Add services to the container.
+//Roles
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.User.RequireUniqueEmail = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireDigit = true;
+    })
+    .AddEntityFrameworkStores<AppDbContext>();
+
+//Configure JWT
+builder.Services.AddAuthentication(options => 
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(jwt => 
+    {
+        var key = Encoding.ASCII.GetBytes(jwtConfig);
+        jwt.SaveToken = true;
+
+        jwt.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            //Expiration date
+            RequireExpirationTime = true,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero 
+        };
+    });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -116,42 +151,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-//Roles
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
-    {
-        options.SignIn.RequireConfirmedAccount = false;
-        options.User.RequireUniqueEmail = true;
-        options.Password.RequireUppercase = true;
-        options.Password.RequireLowercase = true;
-        options.Password.RequireDigit = true;
-    })
-    .AddEntityFrameworkStores<AppDbContext>();
-
-//Configure JWT
-builder.Services.AddAuthentication(options => 
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(jwt => 
-    {
-        var key = Encoding.ASCII.GetBytes(jwtConfig);
-        jwt.SaveToken = true;
-
-        jwt.TokenValidationParameters = new TokenValidationParameters()
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            //Expiration date
-            RequireExpirationTime = true,
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero 
-        };
-    });
 
 builder.Services.AddAuthorization(); 
 

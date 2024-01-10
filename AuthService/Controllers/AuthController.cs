@@ -59,7 +59,7 @@ namespace AuthService.Controllers
                     var userClaims = await _userManager.GetClaimsAsync(user);
                     var userRoles = await _userManager.GetRolesAsync(user);
                     
-                    var token = await JWTHelper.GenerateJwtToken(user, _jwtConfig, userClaims, userRoles);
+                    var token = JWTHelper.GenerateJwtToken(user, _jwtConfig, userClaims, userRoles);
 
                     return Ok(new UserLoginResDto() 
                     {
@@ -141,7 +141,7 @@ namespace AuthService.Controllers
                     var userClaims = await _userManager.GetClaimsAsync(user);
                     var userRoles = await _userManager.GetRolesAsync(user);
 
-                    var token = await JWTHelper.GenerateJwtToken(user, _jwtConfig, userClaims, userRoles);
+                    var token = JWTHelper.GenerateJwtToken(user, _jwtConfig, userClaims, userRoles);
                     return Ok(new UserRegisterResDto()
                     {
                         Result = true,

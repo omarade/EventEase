@@ -9,7 +9,7 @@ namespace AuthService.Helpers
 {
     public class JWTHelper
     {
-        public static async Task<string> GenerateJwtToken(IdentityUser user, JwtConfig jwtConfig, IList<Claim> userClaims, IList<string> userRoles)
+        public static string GenerateJwtToken(IdentityUser user, JwtConfig jwtConfig, IList<Claim> userClaims, IList<string> userRoles)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
