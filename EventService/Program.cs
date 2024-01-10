@@ -151,8 +151,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-PrepDb.PrepPopulation(app, app.Environment.IsProduction());
-
 app.UseHttpsRedirection();
 
 app.UseCors(allowedSpecificOrigins);
@@ -160,5 +158,7 @@ app.UseCors(allowedSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();
+
+PrepDb.PrepPopulation(app, app.Environment.IsProduction());
 
 app.Run();

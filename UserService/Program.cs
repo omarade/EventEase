@@ -133,8 +133,6 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        PrepDb.PrepPopulation(app, app.Environment.IsProduction());
-
         app.UseHttpsRedirection();
 
         app.UseCors(allowedSpecificOrigins);
@@ -142,6 +140,8 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllers();
+
+        PrepDb.PrepPopulation(app, app.Environment.IsProduction());
 
         app.Run();
 
