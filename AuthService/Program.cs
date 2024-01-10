@@ -51,13 +51,13 @@ else
     connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
     Console.WriteLine("----> Using InMem Db");
-    // builder.Services.AddDbContext<AppDbContext>(opt =>
-    //    opt.UseInMemoryDatabase("InMem")
-    // );
-
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlServer(connectionString)
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+       opt.UseInMemoryDatabase("InMem")
     );
+
+    // builder.Services.AddDbContext<AppDbContext>(options =>
+    //     options.UseSqlServer(connectionString)
+    // );
 
     builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
     // Console.WriteLine(connectionString);
