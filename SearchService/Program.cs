@@ -142,7 +142,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Monitoring Prometheus: export metrics to Prometheus
-// http://localhost:5268/metrics
+// http://localhost:5268/api/search/metrics
 app.UseMetricServer("/api/search/metrics");
 app.UseHttpMetrics(options =>
 {
@@ -160,7 +160,6 @@ if (app.Environment.IsDevelopment())
 }
 
 
-
 app.UseHttpsRedirection();
 
 app.UseCors(allowedSpecificOrigins);
@@ -170,10 +169,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 PrebDb.PrepPopulation(app, app.Environment.IsProduction());
-
-// app.MapPrometheusScrapingEndpoint("/metrics");
-
-// app.MapGet("/", () => "Hello OpenTelemetry! ticks:"
-//                      + DateTime.Now.Ticks.ToString()[^3..]);
 
 app.Run();

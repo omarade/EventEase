@@ -5,6 +5,7 @@ using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,11 @@ else
     builder.Services.AddDbContext<AppDbContext>(opt => 
         opt.UseInMemoryDatabase("InMem")
     );
+
+    // connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    // builder.Services.AddDbContext<AppDbContext>(options =>
+    //     options.UseSqlServer(connectionString)
+    // ); 
 }
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -143,6 +149,17 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization(); 
 
 var app = builder.Build();
+
+// Monitoring Prometheus: export metrics to Prometheus
+// http://localhost:5229/api/events/metrics
+app.UseMetricServer("/api/events/metrics");
+app.UseHttpMetrics(options =>
+{
+    // This will preserve only the first digit of the status code.
+    // For example: 200, 201, 203 -> 2xx
+    options.ReduceStatusCodeCardinality();
+});
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using UserService.Consumers;
 using UserService.Data;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Prometheus;
 
 public class Program
 {
@@ -41,6 +43,12 @@ public class Program
             builder.Services.AddDbContext<AppDbContext>(opt =>
                 opt.UseInMemoryDatabase("InMem")
             );
+
+            // connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            // builder.Services.AddDbContext<AppDbContext>(options =>
+            //     options.UseSqlServer(connectionString)
+            // );
         }
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -91,7 +99,6 @@ public class Program
             );
         });
 
-
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -126,6 +133,16 @@ public class Program
 
         var app = builder.Build();
 
+        // Monitoring Prometheus: export metrics to Prometheus
+        // http://localhost:5148/api/users/metrics
+        app.UseMetricServer("/api/users/metrics");
+        app.UseHttpMetrics(options =>
+        {
+            // This will preserve only the first digit of the status code.
+            // For example: 200, 201, 203 -> 2xx
+            options.ReduceStatusCodeCardinality();
+        });
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -138,6 +155,7 @@ public class Program
         app.UseCors(allowedSpecificOrigins);
 
         app.UseAuthorization();
+
 
         app.MapControllers();
 

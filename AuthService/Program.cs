@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -155,6 +156,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization(); 
 
 var app = builder.Build();
+
+// Monitoring Prometheus: export metrics to Prometheus
+// http://localhost:5271/api/auth/metrics
+app.UseMetricServer("/api/auth/metrics");
+app.UseHttpMetrics(options =>
+{
+    // This will preserve only the first digit of the status code.
+    // For example: 200, 201, 203 -> 2xx
+    options.ReduceStatusCodeCardinality();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
