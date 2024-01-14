@@ -1,6 +1,9 @@
 using MassTransit;
+using Microsoft.Extensions.Options;
+using OpenTelemetry.Metrics;
 using SearchService.Consumers;
 using SearchService.Data;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -122,7 +125,32 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// builder.Services.AddOpenTelemetry()
+//     .WithMetrics(x =>
+//     {
+//         x.AddPrometheusExporter();
+
+//         x.AddMeter("Microsoft.AspNetCore.Hosting",
+//                          "Microsoft.AspNetCore.Server.Kestrel");        
+//         x.AddView("http.server.request.duration", new ExplicitBucketHistogramConfiguration
+//         {
+//             Boundaries = new double[] { 0, 0.005, 0.01, 0.025, 0.05,
+//                        0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 }
+//         });
+//     });
+
 var app = builder.Build();
+
+// Monitoring Prometheus: export metrics to Prometheus
+// http://localhost:5268/metrics
+app.UseMetricServer("/api/search/metrics");
+app.UseHttpMetrics(options =>
+{
+    // This will preserve only the first digit of the status code.
+    // For example: 200, 201, 203 -> 2xx
+    options.ReduceStatusCodeCardinality();
+});
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -130,6 +158,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 app.UseHttpsRedirection();
 
@@ -140,5 +170,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 PrebDb.PrepPopulation(app, app.Environment.IsProduction());
+
+// app.MapPrometheusScrapingEndpoint("/metrics");
+
+// app.MapGet("/", () => "Hello OpenTelemetry! ticks:"
+//                      + DateTime.Now.Ticks.ToString()[^3..]);
 
 app.Run();

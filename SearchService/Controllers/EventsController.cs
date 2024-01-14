@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SearchService.Data;
+using Prometheus;
 
 namespace SearchService.Controllers
 {
@@ -8,10 +9,12 @@ namespace SearchService.Controllers
     public class EventsController: ControllerBase
     {
         private readonly IEventRepo _eventRepo;
+        private readonly Counter _counter;
 
         public EventsController(IEventRepo eventRepo)
         {
             _eventRepo = eventRepo;
+            _counter = Metrics.CreateCounter("search_counter", "Search service counter");
         }
 
         /// <summary>
@@ -24,6 +27,9 @@ namespace SearchService.Controllers
         public async Task<IActionResult> GetUpcomingEvents(int pageSize = 20, int pageNumber = 1)
         {
             var events = await _eventRepo.GetUpcomingEvents(pageSize, pageNumber);
+
+            // Increment the counter
+            _counter.Inc();
 
             return Ok(events);
         }
@@ -39,6 +45,9 @@ namespace SearchService.Controllers
         public async Task<IActionResult> GetEventsByArtist(string artist, int pageSize, int pageNumber)
         {
             var events = await _eventRepo.GetEventsByArtist(artist, pageSize, pageNumber);
+            
+            // Increment the counter
+            _counter.Inc();
 
             return Ok(events);
         }
@@ -54,6 +63,9 @@ namespace SearchService.Controllers
         public async Task<IActionResult> GetEventsByDate(DateTime date, int pageSize, int pageNumber)
         {
             var events = await _eventRepo.GetEventsByDate(date, pageSize, pageNumber);
+            
+            // Increment the counter
+            _counter.Inc();
 
             return Ok(events);
         }
@@ -69,6 +81,9 @@ namespace SearchService.Controllers
         public async Task<IActionResult> GetEventsByType(string type, int pageSize, int pageNumber)
         {
             var events = await _eventRepo.GetEventsByType(type, pageSize, pageNumber);
+
+            // Increment the counter
+            _counter.Inc();
 
             return Ok(events);
         }
