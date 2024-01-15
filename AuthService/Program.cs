@@ -176,7 +176,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 
-app.UseCors(allowedSpecificOrigins);
+// app.UseCors(allowedSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
