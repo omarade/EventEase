@@ -106,18 +106,18 @@ builder.Services.AddMassTransit(config => {
 builder.Services.AddScoped<IEventRepo, EventRepo>();
 
 //CORS
-var allowedSpecificOrigins = "_allowedSpecificOrigins";
+// var allowedSpecificOrigins = "_allowedSpecificOrigins";
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: allowedSpecificOrigins,
-        policy  =>
-        {
-            policy.WithOrigins("http://localhost:80",
-                                "http://localhost:4200");
-        }
-    );
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy(name: allowedSpecificOrigins,
+//         policy  =>
+//         {
+//             policy.WithOrigins("http://localhost:80",
+//                                 "http://localhost:4200");
+//         }
+//     );
+// });
 
 
 builder.Services.AddControllers();
@@ -162,7 +162,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(allowedSpecificOrigins);
+// app.UseCors(allowedSpecificOrigins);
 
 app.UseAuthorization();
 
