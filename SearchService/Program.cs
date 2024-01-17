@@ -98,7 +98,7 @@ builder.Services.AddMassTransit(config => {
     });
 });
 
-// builder.Services.AddScoped<IEventRepo, EventRepo>();
+builder.Services.AddScoped<IEventRepo, EventRepo>();
 
 //CORS
 // var allowedSpecificOrigins = "_allowedSpecificOrigins";
@@ -115,7 +115,7 @@ builder.Services.AddMassTransit(config => {
 // });
 
 
-// builder.Services.AddControllers();
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
