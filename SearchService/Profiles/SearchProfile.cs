@@ -13,6 +13,11 @@ namespace SearchService.Profiles
                 .ForMember(dest => dest.ExternalId, opt =>
                     opt.MapFrom(src => src.Id)
                 );
+                
+            CreateMap<MessageBusEvents.Models.Dto.Venue, Venue>()
+                .ForMember(dest => dest.ExternalId, opt =>
+                    opt.MapFrom(src => src.Id)
+                );
 
             CreateMap<EventUpdated, Event>();
             
