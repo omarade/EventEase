@@ -31,6 +31,9 @@ namespace EventService.Consumers
             var venueModel = await _venueRepo.GetVenueByExternalId(venueUpdated.Id);
 
             venueModel.Name = venueUpdated.Name;
+            venueModel.PhoneNumber = venueUpdated.PhoneNumber;
+            venueModel.Address = venueUpdated.Address;
+            venueModel.City = venueUpdated.City;
 
             _venueRepo.UpdateVenue(venueModel);
 

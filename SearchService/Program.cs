@@ -43,11 +43,6 @@ if (builder.Environment.IsProduction())
         config.DatabaseName = databaseSettings.DatabaseName;
         config.EventsCollectionName = databaseSettings.EventsCollectionName;
     });
-
-    // Console.WriteLine("----> Using MongoDB");
-    // builder.Services.AddDbContext<AppDbContext>(options =>
-    //     options.UseMongoDB(connectionString)
-    // );
 }
 else 
 {
@@ -103,7 +98,7 @@ builder.Services.AddMassTransit(config => {
     });
 });
 
-builder.Services.AddScoped<IEventRepo, EventRepo>();
+// builder.Services.AddScoped<IEventRepo, EventRepo>();
 
 //CORS
 // var allowedSpecificOrigins = "_allowedSpecificOrigins";
@@ -120,24 +115,10 @@ builder.Services.AddScoped<IEventRepo, EventRepo>();
 // });
 
 
-builder.Services.AddControllers();
+// builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// builder.Services.AddOpenTelemetry()
-//     .WithMetrics(x =>
-//     {
-//         x.AddPrometheusExporter();
-
-//         x.AddMeter("Microsoft.AspNetCore.Hosting",
-//                          "Microsoft.AspNetCore.Server.Kestrel");        
-//         x.AddView("http.server.request.duration", new ExplicitBucketHistogramConfiguration
-//         {
-//             Boundaries = new double[] { 0, 0.005, 0.01, 0.025, 0.05,
-//                        0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 }
-//         });
-//     });
 
 var app = builder.Build();
 
