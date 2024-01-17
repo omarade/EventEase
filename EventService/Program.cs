@@ -24,15 +24,10 @@ if (builder.Environment.IsProduction())
     connectionString = Environment.GetEnvironmentVariable("EVENT_DB_CONNECTION_STRING");
     Console.WriteLine(connectionString);
 
-    // Console.WriteLine("----> Using SqlServer Db");
-    // builder.Services.AddDbContext<AppDbContext>(options =>
-    //     options.UseSqlServer(connectionString)
-    // );
-
-     Console.WriteLine("----> Using InMem Db");
-    builder.Services.AddDbContext<AppDbContext>(opt => 
-        opt.UseInMemoryDatabase("InMem")
-    );
+    Console.WriteLine("----> Using SqlServer Db");
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(connectionString)
+    ); 
 }
 else 
 {
