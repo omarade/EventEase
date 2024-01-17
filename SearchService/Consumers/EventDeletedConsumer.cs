@@ -27,8 +27,9 @@ namespace SearchService.Consumers
 
             //Find event
             var eventModel =  await _eventRepo.GetEventByExternalId(eventDeleted.Id);
+
             //Delete event
-            await _eventRepo.DeleteEvent(eventModel);
+            await _eventRepo.DeleteEvent(eventModel);            
         }
     }
 }
