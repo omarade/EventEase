@@ -26,8 +26,17 @@ namespace SearchService.Consumers
             _logger.LogInformation($"----> Got new message EventUpdated: {eventUpdated.Id}");
 
             //Find event
-            // var eventModel =  await _eventRepo.GetEventByExternalId(eventUpdated.Id);
-            var eventModel = _mapper.Map<Models.Event>(eventUpdated);
+            var eventModel =  await _eventRepo.GetEventByExternalId(eventUpdated.Id);
+            //var eventModel = _mapper.Map<Models.Event>(eventUpdated);
+
+            eventModel.Name = eventUpdated.Name;
+            eventModel.Type = eventUpdated.Type;
+            eventModel.Artist = eventUpdated.Artist;
+            eventModel.Description = eventUpdated.Description;
+            eventModel.DateTime = eventUpdated.DateTime;
+            eventModel.ImgPath = eventUpdated.ImgPath;
+            eventModel.RemainingTickets = eventUpdated.RemainingTickets;
+
             //Update event
             await _eventRepo.UpdateEvent(eventModel);
         }
