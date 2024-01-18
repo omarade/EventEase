@@ -13,7 +13,7 @@ namespace EventService.Models.Dtos
 
         public string Description { get; set; }
 
-        public DateTime Time { get; set; }
+        public DateTime DateTime { get; set; }
 
         public string ImgPath { get; set; }
 
