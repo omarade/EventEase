@@ -98,7 +98,8 @@ builder.Services.AddMassTransit(config => {
     });
 });
 
-builder.Services.AddScoped<IEventRepo, EventRepo>();
+// builder.Services.AddScoped<IEventRepo, EventRepo>();
+builder.Services.AddSingleton<IEventRepo, EventRepo>();
 
 //CORS
 // var allowedSpecificOrigins = "_allowedSpecificOrigins";
