@@ -9,8 +9,11 @@ namespace SearchService.Data
         public readonly IMongoCollection<Event> _eventsCollection;
 
         public EventRepo(IOptions<DatabaseSettings> databaseSettings)
-        {
-            var mongoClient = new MongoClient(databaseSettings.Value.ConnectionString);
+        {   
+            var mongoClientSettings = MongoClientSettings.FromConnectionString(databaseSettings.Value.ConnectionString);
+            mongoClientSettings.MaxConnectionPoolSize = 500; // Adjust this value based on your requirements
+
+            var mongoClient = new MongoClient(mongoClientSettings);
             Console.WriteLine(databaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(databaseSettings.Value.DatabaseName);
